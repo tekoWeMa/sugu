@@ -10,7 +10,7 @@ public class Main {
 
 
     public static void main(final String[] args) {
-        final String token = "OTU4NDYzNTc3NzY3OTYwNTk2.GXCvQm.WtsvCNCaY6DPryl2K4UuNLuYYEveAAUhz1tcvI";
+        finl String token = "OTU4NDYzNTc3NzY3OTYwNTk2.GXCvQm.WtsvCNCaY6DPryl2K4UuNLuYYEveAAUhz1tcvI";
         final DiscordClient client = DiscordClient.create(token);
         final GatewayDiscordClient gateway = client.login().block();
 
