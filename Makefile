@@ -5,7 +5,7 @@ CONTAINER_TAG_VERSION	:= latest
 
 PHONY: docker-compose-up
 docker-compose-up:
-	$(CONTAINER) compose up
+	$(CONTAINER) compose up -d
 
 PHONY: docker-compose-build
 docker-compose-build:
