@@ -1,0 +1,7 @@
+services:
+  discord-bot:
+    image: sugu:latest
+    build:
+      dockerfile: Dockerfile
+      context: .
+    restart: always
