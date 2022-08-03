@@ -3,6 +3,7 @@ CONTAINER_COMPOSE	:= "$(CONTAINER) compose"
 
 CONTAINER_TAG			:= sugu
 CONTAINER_TAG_VERSION	:= latest
+CONTAIENR_TAG_NAME		:= $(CONTAINER_TAG):$(CONTAINER_TAG_VERSION)
 
 PHONY: update
 update: docker-compose-stop
@@ -30,4 +31,12 @@ docker-run:
 
 PHONY: docker-build
 docker-build:
-	$(CONTAINER) build --tag $(CONTAINER_TAG):$(CONTAINER_TAG_VERSION) .
+	$(CONTAINER) build --tag $(CONTAIENR_TAG_NAME) .
+
+PHONY: docker-tag
+docker-tag: docker-build
+	$(CONTAINER) tag $(CONTAIENR_TAG_NAME) sirh3e/$(CONTAIENR_TAG_NAME)
+
+PHONY: docker-push
+docker-push: docker-tag
+	$(CONTAINER) push sirh3e/$(CONTAIENR_TAG_NAME)

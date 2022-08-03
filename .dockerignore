@@ -3,3 +3,8 @@
 .gradle/
 .idea/
 build/
+.gitignore
+docker-compose.yaml
+Dockerfile
+gradlew.bat
+Makefile
