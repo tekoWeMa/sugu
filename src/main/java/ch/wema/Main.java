@@ -22,6 +22,6 @@ public class Main {
             }
         });
 
-        gateway.onDisconnect().block();
+        /gateway.onDisconnect().block();
     }
 }
