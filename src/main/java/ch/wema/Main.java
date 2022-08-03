@@ -20,6 +20,10 @@ public class Main {
                 final MessageChannel channel = message.getChannel().block();
                 channel.createMessage("Pong!").block();
             }
+            if ("!version".equals(message.getContent())){
+                final MessageChannel channel = message.getChannel().block();
+                channel.createMessage("New version").block();
+            }
         });
 
         gateway.onDisconnect().block();
