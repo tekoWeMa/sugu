@@ -144,7 +144,7 @@ sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/do
 Danach ist die Installation abgeschlossen. Nun können wir mit einem Browser auf das webinterface zugreifen: ``http://sugu.local:9000/``
 
 
-## What's included
+## What's included (:)
 
 Some text
 
