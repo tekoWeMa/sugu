@@ -6,7 +6,7 @@ import reactor.core.publisher.Mono;
 public class PingCommand implements Command {
     @Override
     public String getName() {
-        return "!ping";
+        return "ping";
     }
 
     @Override

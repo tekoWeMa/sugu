@@ -18,6 +18,9 @@ public class CommandListener {
     }
 
     public static Mono<Void> handle(ChatInputInteractionEvent event) {
+
+        System.out.println(event.getCommandName());
+
         return Flux.fromIterable(commands)
                 .filter(command -> command.getName().equals(event.getCommandName()))
                 .next()
