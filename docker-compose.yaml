@@ -4,4 +4,6 @@ services:
     build:
       dockerfile: Dockerfile
       context: .
+    environment:
+      - DISCORD_CLIENT_TOKEN
     restart: always
