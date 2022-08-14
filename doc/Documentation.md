@@ -146,6 +146,20 @@ Danach ist die Installation abgeschlossen. Nun können wir mit einem Browser Lok
 TODO: Bilder der Einstellungen des Raspi und Portainer webinterface
 
 
+Features: 
+Mario:
+PB und Namensänderung
+
+anders:
+Ping pong
+SIMP rollenvergabe beim joinen vom simpsumpf
+beim @everyone muten (JAIL rollenvergabe)
+bei YEP im chat antwortet der bot mit YEP
+
+
+
+
+
 ## What's included (:)
 
 Some text
