@@ -1,11 +1,8 @@
 package ch.wema;
 
-import discord4j.common.util.Snowflake;
+import ch.wema.listeners.CommandListener;
 import discord4j.core.DiscordClientBuilder;
-import discord4j.core.event.domain.VoiceStateUpdateEvent;
-import discord4j.core.event.domain.message.MessageCreateEvent;
-import discord4j.core.object.entity.Message;
-import discord4j.core.object.entity.channel.MessageChannel;
+import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 
 public class Main {
 
@@ -14,6 +11,7 @@ public class Main {
         final var token = System.getenv("DISCORD_CLIENT_TOKEN");
         final var client = DiscordClientBuilder.create(token).build().login().block();
 
+        /*
         //PING command
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .map(MessageCreateEvent::getMessage)
@@ -22,7 +20,8 @@ public class Main {
                 .flatMap(Message::getChannel)
                 .flatMap(channel -> channel.createMessage("Pong!"))
                 .subscribe(); //ToDo latency
-
+        */
+        /*
         //YEP reaction
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .map(MessageCreateEvent::getMessage)
@@ -53,7 +52,7 @@ public class Main {
 
                     message.delete().block();
                 })); //Store message
-
+        */
         /*
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .map(MessageCreateEvent::getMessage)
@@ -89,7 +88,7 @@ public class Main {
                 })
                 .subscribe();
         */
-
+        /*
         client.getEventDispatcher().on(VoiceStateUpdateEvent.class)
                 .map(VoiceStateUpdateEvent::getCurrent)
                 .filter(state -> state.getChannelId().map(id -> id.equals(Snowflake.of("619989000693874699"))).orElse(false))
@@ -101,7 +100,11 @@ public class Main {
 
                     System.out.println(message);
                 });
+        */
 
-        client.onDisconnect().block();
+
+        client.on(ChatInputInteractionEvent.class, CommandListener::handle)
+                .then(client.onDisconnect())
+                .block();
     }
 }
