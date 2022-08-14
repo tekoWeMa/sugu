@@ -133,7 +133,7 @@ Als nächstes müssen wir den Benutzer ```sugu``` in die dockergruppe hinzufüge
 sudo usermod -aG docker sugu
 ```
 # Portainer Installation
-Um die Verwaltung der Container zu vereinfachen mit einem web GIU installieren wir Portainer:
+Um die Verwaltung der Container zu vereinfachen mit einem web GUI installieren wir Portainer:
 
 
 ```
@@ -141,7 +141,9 @@ sudo docker pull portainer/portainer-ce:linux-arm
 
 sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:linux-arm
 ```
-Danach ist die Installation abgeschlossen. Nun können wir mit einem Browser auf das webinterface zugreifen: ``http://sugu.local:9000/``
+Danach ist die Installation abgeschlossen. Nun können wir mit einem Browser Lokal auf das Webinterface zugreifen: ``http://sugu.local:9000/``
+
+TODO: Bilder der Einstellungen des Raspi und Portainer webinterface
 
 
 ## What's included (:)
