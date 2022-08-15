@@ -31,7 +31,7 @@ jar {
 
 task customFatJar(type: Jar) {
     manifest {
-        attributes 'Main-Class': 'ch.wema.Main'
+        attributes 'Main-Class': 'ch.wema.Sugu'
     }
     baseName = 'sugu'
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
