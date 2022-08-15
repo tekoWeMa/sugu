@@ -143,18 +143,21 @@ sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/do
 ```
 Danach ist die Installation abgeschlossen. Nun können wir mit einem Browser Lokal auf das Webinterface zugreifen: ``http://sugu.local:9000/``
 
-TODO: Bilder der Einstellungen des Raspi und Portainer webinterface
+
+TODO mario: erklärung der Features, Bilder der Einstellungen des Raspi und Portainer webinterface
+
+# Features
+
+# Rollenverteilung "Simp" Rolle
+
+# Ping - Pong
 
 
-Features: 
-Mario:
-PB und Namensänderung
+# @Everyone Bot schutz und Jail rollenvergabe
 
-anders:
-Ping pong
-SIMP rollenvergabe beim joinen vom simpsumpf
-beim @everyone muten (JAIL rollenvergabe)
-bei YEP im chat antwortet der bot mit YEP
+# YEP chatbot
+
+
 
 
 
