@@ -13,20 +13,21 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     implementation 'com.discord4j:discord4j-core:3.2.2'
-    implementation 'ch.qos.logback:logback-classic:1.2.3'
+    implementation 'ch.qos.logback:logback-classic:1.2.11'
 }
 
-test {
-    useJUnitPlatform()
-}
 jar {
     manifest {
-        attributes "Main-Class": "ch.wema.Main"
+        attributes "Main-Class": "ch.wema.Sugu"
     }
 
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
+}
+
+test {
+    useJUnitPlatform()
 }
 
 task customFatJar(type: Jar) {
