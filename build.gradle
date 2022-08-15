@@ -13,6 +13,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     implementation 'com.discord4j:discord4j-core:3.2.2'
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
 }
 
 test {
@@ -30,7 +31,7 @@ jar {
 
 task customFatJar(type: Jar) {
     manifest {
-        attributes 'Main-Class': 'ch.wema.Main'
+        attributes 'Main-Class': 'ch.wema.Sugu'
     }
     baseName = 'sugu'
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
