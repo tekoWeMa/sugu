@@ -8,13 +8,13 @@ CONTAINER_TAG_VERSION	:= latest
 CONTAINER_TAG_NAME		:= $(CONTAINER_TAG):$(CONTAINER_TAG_VERSION)
 
 PHONY: build
-build:	docker-compose-build
+build: docker-compose-build
 
 PHONY: stop
-stop:	docker-compose-stop
+stop: docker-compose-stop
 
 PHONY: up
-up:	docker-compose-up
+up: docker-compose-up
 
 PHONY: docker-compose-build
 docker-compose-build:
