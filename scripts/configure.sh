@@ -1,3 +1,12 @@
 #!/usr/bin/env sh
+set -eux
+env_path=".env"
+makefile_path="Makefile.env"
 
-cp .env Makefile.env
+if [ ! -f "${env_path}" ]
+then
+  echo "Please provide: DISCORD_CLIENT_TOKEN"
+  read -r token
+  echo "DISCORD_CLIENT_TOKEN=${token}" > "${env_path}"
+  cp "${env_path}" "${makefile_path}"
+fi
