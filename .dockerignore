@@ -4,6 +4,7 @@
 .idea/
 .env
 build/
+configure
 .gitignore
 docker-compose.yaml
 Dockerfile
