@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 set -eux
+
 env_path=".env"
 makefile_path="Makefile.env"
 
