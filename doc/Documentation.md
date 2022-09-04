@@ -40,18 +40,17 @@ In diesem Dokument wir die Aufgabe erklärt sowie unsere Idee und die zu verwend
 
 ## Aufgabenstellung
 
-Ziel ist es in eine Applikation in JAVA zur erstellen welches das Administeren von Discord Server vereinfacht.
+Unsere Aufgabe ist es, eine Projektarbeit in der Programmiersprache JAVA zu machen.
 
 ## Idee
 
-
-
-
-
+Die Idee ist es, ein Tool zu entwickeln, welches die Administration eines grossen Discord Servers erleichtert.  
+Dieses Soll erweiterbar sein und somit eine Lernplattform bilden, um uns zu unterstützen während der Schulzeit. 
+Implementierung neuer Features oder Erweiterung der alten soll uns beim lernen der Programmiersprache JAVA ein Ansatz bieten.
 
 ## Projektziele
 
-Durch Automatisation und Implementation von Tasks und Features (Rollenverteilung, Channelmanagement) soll der Verwaltungsaufwand verringert werden.
+Durch Automatisation und Implementation von Tasks und Features (Rollenverteilung, Channelmanagement) soll der Verwaltungsaufwand des Discord Servers verringert werden.
 
 Mit diesem Projekt sollen folgende Ziele erreicht werden:
 - 1.	Automatisation von Rollenverteilung
@@ -125,7 +124,7 @@ Einstellungen mit ``Ctrl + o`` schreiben und den Editor mit ``Ctrl + x`` verlass
 
 ## Docker Installation
 
-Mit Docker ist es einfach, Server-Software auszuprobieren und zu betreiben. So installiert man die Container-Plattform für gängige Betriebssysteme auf dem Server oder Entwickler-PC, hier in unserem Fall das Raspberry PI
+Mit Docker ist es einfach, Server-Software Auszuprobieren und zu Betreiben. So Installiert man die Container-Plattform für gängige Betriebssysteme auf dem Server oder Entwickler-PC, hier in unserem Fall das Raspberry PI
 
 Da nun eine Statische IP gesetzt wurde, kann via SSH verbunden werden. Mittels dem Programm Putty auf 192.168.1.17 verbinden, Username und Passwort eingeben. <br />
 Danach führen wir standart package updates aus, um auf dem neusten stand zu sein.
@@ -164,10 +163,15 @@ Danach ist die Installation abgeschlossen. Nun können wir mit einem Browser Lok
 <img src="Portainer.PNG" width="45%"> <img src="Container.PNG" width="45%">
 
 
+## Discord Übersicht
 
-TODO mario: erklärung der Features, Beschreibung idee
+Discord ist eine App für Nachrichten, Chats und Videoanrufe. 
+Das Programm kann auf dem Smartphone oder auch auf dem PC installiert werden.
 
-
+In den Chats lassen sich auch Videos, Bilder oder Dokumente versenden.
+Auf Discord kann man auch eigene Server erstellen. Server sind Bereiche, in denen man sich mit Freunden oder anderen Usern zu einem speziellen Thema austauschen kann. 
+Auf einem Server kann man verschiedene Sprach- und Textkanäle mit verschiedenen Berechtigungen erstellen. Diese Berechtigungen werden über Rollen verwaltet und können den Usern zugewiesen werden.
+<img src="Discord.PNG" width="100%">
 
 
 
@@ -176,15 +180,25 @@ TODO mario: erklärung der Features, Beschreibung idee
 
 ## Rollenverteilung "Simp" Rolle
 
+Um auf einem grossen Server zu erkennen, welcher User zu welcher Freundesgruppe gehört, ist es praktisch einer Rollengruppe anzugehören. 
+Immer dann, wenn ein Benutzer sich mit dem Sprachkanal "Katari`s Simpsumpf" verbindet, wird dem User über das ausgelöste Event die Rolle "Simp" zugewiesen. 
+Dadurch ist 
 
 ## Ping - Pong
 
+Um zu Überprüfen ob der Discord Bot funktioniert und läuft, wird eine Ping - Pong Funktion eingebaut. 
+Mit `/Ping` kann ein Event ausgelöst werden. Dieses wird mit der Reaktion "Pong!" beantwortet im Chat vom Discord Bot. Somit weiss man, dass er Online ist und funktioniert.
 
-## @Everyone Bot schutz und Jail rollenvergabe
+## @Everyone Bot Schutz und Jail Rollenvergabe
 
+Der Chatbefehl `@everyone` wird häufig von Scam-Bots verwendet, um die Aufmerksamkeit durch einen ping an alle zu erhalten. Dies geschieht dann meistens in jedem Textkanal.
+Dabei wird gehofft, dass die Personen auf einen Link klicken. Um vorzubeugen, dass jemand auf diesen Link klickt, Löscht der Discord Bot die Nachricht. Weiter gibt er dem Benutzer eine Rolle: "Jail".
+Diese Rolle wurde auf dem Discord Server so konfiguriert, dass der Benutzer keine Schreibberechtigung mehr hat und somit keine Links mehr posten kann.
 
 ## YEP chatbot
 
+Der Ausdruck "YEP" als Bestätigung auf eine Aussage ist in vielen Gruppen sehr verbreitet. Deswegen Soll der Discord Bot davon nicht ausgeschlossen werden.
+Jedes mal wenn ein Satz das Wort `yep` enthält, meldet sich der Discord Bot mit `YEP` über das ausgelöste Event.
 
 
 # Technische Doku
@@ -272,7 +286,7 @@ main/
                   │     ├── AtEveryoneReaction
                   │     ├── SimpReaction
                   │     └── YepReaction
-                  ├── GlobalCommandRegisterer
+                  ├── GlobalCommandRegistrar
                   └── Sugu
  
 ```
@@ -283,13 +297,13 @@ Folgende 4 Teile sind die wichtigsten:
 1. Commands
 2. Reactions
 3. Listeners
-4. GlobalCommandRegisterer
+4. GlobalCommandRegistrar
 
 
 #### Commands:
 
 Commands oder auch Befehle sind alle Befehle welcher der Benutzer kontrolliert absetzen kann.<br />
-Diese unterleidung dient zur seperierung von Klassen und dient der einfachen Übersicht.
+Diese Unterteilung ist zur seperierung von Klassen und dient der einfachen Übersicht.
 
 #### Reactions:
 
@@ -300,7 +314,7 @@ Eine Reaction ist ein Event, auf welches man Reagieren möchte bsp. Statusänder
 Listeners handeln alle Events von Reactions und Commands.
 
 #### GlobalCommandRegistrar:
-Dient Registrierung von Events auf der Server Seite.
+Dient zur Registrierung von Events auf der Server Seite.
 
 
 #### Gliederungsvorteile
