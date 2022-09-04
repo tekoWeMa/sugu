@@ -56,13 +56,14 @@ Mit diesem Projekt sollen folgende Ziele erreicht werden:
 - 3.	Aufbau der Infrastruktur für eine erweiterbare Lernumgebung
 
 ## Risikoanalyse
+Riesikoanalysengraph
 
-| Schadensausmass |                                                                                                 |        |      |
-|:----------------|:------------------------------------------------------------------------------------------------|-------:|-----:|
-| Hoch            | -Discord stellt keine Dienste <br />mehr bereit <br />-Java wird nicht weiter<br /> unterstützt |        |      |
-| Niedrig         |                                                                                                 |        |      |
-|                 | Niedrig                                                                                         | Mittel | Hoch | 
-|                 | Eintrittswarscheinlichkeit                                                                      |        |      |     |
+| Schadensausmass |                                                                                                    |        |      |
+|:----------------|:---------------------------------------------------------------------------------------------------|-------:|-----:|
+| Hoch            | -Discord stellt keine Dienste <br />mehr bereit <br />-Java wird nicht weiter<br /> unterstützt    |        |      |
+| Niedrig         |                                                                                                    |        |      |
+|                 | Niedrig                                                                                            | Mittel | Hoch | 
+|                 | __Eintrittswarscheinlichkeit__                                                                     |        |      |     |
 
 # Meilensteine
 
