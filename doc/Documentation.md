@@ -12,19 +12,21 @@
     ·
     <a href="https://reponame/issues/new?template=feature.md&labels=feature">Request feature</a>
   </p>
-</p>
 
 
-## Table of contents
+## Dokumentation
 
-- [Quick start](#quick-start)
-- [Status](#status)
-- [What's included](#whats-included)
-- [Bugs and feature requests](#bugs-and-feature-requests)
-- [Contributing](#contributing)
-- [Creators](#creators)
+- [Einleitung](#einleitung)
+- [Aufgabenstellung](#aufgabenstellung)
+- [Idee](#idee)
+- [Projektziele](#projektziele)
+- [Risikoanalyse](#risikoanalyse)
+- [Meilensteine](#meilensteine)
+- [Meilensteine](#einrichtung-und-konfiguration)
+
 - [Thanks](#thanks)
 - [Copyright and license](#copyright-and-license)
+- [Bugs and feature requests](#bugs-and-feature-requests)
 
 
 ## Einleitung
@@ -35,7 +37,7 @@ Diese Dokument dient als Projektdefinition für unsere Projekt Arbeit in Modul P
 
 Ziel ist es in eine Applikation in JAVA zur erstellen welches das Administeren von Discord Server vereinfacht.
 
-## IDEE
+## Idee
 
 
 
@@ -51,7 +53,7 @@ Mit diesem Projekt sollen folgende Ziele erreicht werden:
 - 2.	Individuelle Befehle (Ping - Pong)
 - 3.	Aufbau der Infrastruktur für eine erweiterbare Lernumgebung
 
-# Risikoanalyse
+## Risikoanalyse
 
 Schadensausmass
 | | | | |
@@ -62,9 +64,9 @@ Niedrig| |   |
 | |Niedrig |Mittel |Hoch| 
 ||Eintrittswarscheinlichkeit| |
 
+# Meilensteine
 
-
-# Meilenstein Chart
+## Chart
 | Meilenstein | Festgelegter Termin |Fertigstellung |
 |-------------|----------------------|-------------------|
 |Projektbeginn|29.04.2022|                   |
@@ -72,34 +74,38 @@ Niedrig| |   |
 |Infrastruktur bereitgestellt|27.05.2022|30.07.2022                   |
 |Projektabschluss|02.09.2022|                   |
 
-# Termine
+## Termine
 
 | Sitzungen |Termine | 
 |----------------|----------------------|
 |Projektsitzungen|03.06.2022, 29.08.2022|                   
 |Präsentation|06.05.2022|                   
 
+# Einrichtung und Konfiguration
 
+## Raspberry PI Einrichtung
 
-https://www.tomshardware.com/reviews/raspberry-pi-set-up-how-to,6029.html
+Für den Discord Bot benötigen wir einen Host. Wir haben uns hier für ein Raspberry PI entschieden, da dieses einfach zu warten ist und wenig Platz benötigt.<br />
 
-
-Here goes all the budgets
-# Raspberry PI Einrichtung
-
-Für den Discord Bot benötigen wir einen Host. Wir haben uns hier für ein Raspberry PI entschieden, da dieses einfach zu warten ist und wenig Platz benötigt.
 Mit Hilfe von Raspberry PI Imager kann das gewünschte Betriebssystem installiert werden. Wir verwenden das PI OS 64-bit und schreiben dieses auf die Micro SD Karte.
 Bei erfolgreichem schreiben des Betriebssystems können wir die SD Karte einsetzen und mit einem USB-C den Raspberry Pi Computer mit Strom versorgen.
 
-# Raspberry Konfiguration
+## Raspberry Konfiguration
 
-Mittels HDMI können wir den Desktop des Betriebssystem displayen und die ersten Konfigurationen vornehmen. Mittels Setupmanager wählen wir als erstes die korrekte Region, Zeitzone und Sprache. Danach setzen wir ein Passwort sowie den Namen für den User. Wir benennen ihn nach unserem Projekt, also sugu. Wir benötigen den Namen und Passwort später, wenn wir via SSH darauf zugreifen wollen. Wir setzen den Haken für das Screen Setup um optimierte Auflösungen zu erhalten für den Bildschirm. Da wir Ethernet verwenden, müssen wir uns nicht mit einem W-LAN verbinden. <br />
+Mittels HDMI können wir den Desktop des Betriebssystem anzeigen lassen und die ersten Konfigurationen vornehmen. <br />
+
+Mittels Setupmanager wählen wir als erstes die korrekte Region, Zeitzone und Sprache. Danach setzen wir ein Passwort sowie den Namen für den User. Wir benennen ihn nach unserem Projekt, also sugu. Wir benötigen den Namen und Passwort später, wenn wir via SSH darauf zugreifen wollen. <br />
+
+Wir setzen den Haken für das Screen Setup um optimierte Auflösungen zu erhalten für den Bildschirm. Da wir Ethernet verwenden, müssen wir uns nicht mit einem W-LAN verbinden. <br />
+
 Sobald wir mit einem Netzwerk verbunden sind, können wir im Setupmanager ein Update der Software durchführen.
 
-# SSH einschalten
-Um auf unseren User zugreifen zu können, müssen wir SSH aktivieren. Dafür clicken wir auf dem Desktop auf das Raspberry logo, wählen **Preferences** und dann **Raspberry PI Configuration**. Unter dem **Interfaces** Tab können wir SSH anwählen. 
+## SSH einschalten
+Um auf unseren User zugreifen zu können, müssen wir SSH aktivieren. Dafür klicken wir auf dem Desktop auf das Raspberry logo, wählen **Preferences** und dann **Raspberry PI Configuration**. Unter dem **Interfaces** Tab können wir SSH anwählen. 
 
-# Statische IP vergeben
+<img src="Raspi-Interface.png" width="25%"> <img src="SSH.png" width="30%"> <br />
+
+## Statische IP vergeben
 Um mit keinen Komplikationen konfrontiert zu werden, vergeben wir dem Raspberry PI eine Statische IP Addresse. Dafür öffnen wir das Terminal auf dem Desktop. Mittels ``ifconfig`` können wir die momentan zugeweiste IP des netzwerkes ansehen. In unserem Fall ist dies **192.168.1.17**.<br />Mittels ``sudo nano /etc/dhcpcd.conf`` können wir direkt in die config file unsere gewünschte IP Addresse schreiben. Dies machen wir wiefolgt: 
 ```
 interface eth0
@@ -112,7 +118,10 @@ Einstellungen mit ``Ctrl + o`` schreiben und den Editor mit ``Ctrl + x`` verlass
 
 ``sudo reboot``
 
-# Docker Installation
+## Docker Installation
+
+Mit Docker ist es einfach, Server-Software auszuprobieren und zu betreiben. So installiert man die Container-Plattform für gängige Betriebssysteme auf dem Server oder Entwickler-PC, hier in unserem Fall das Raspberry PI
+
 Da nun eine Statische IP gesetzt wurde, kann via SSH verbunden werden. Mittels dem Programm Putty auf 192.168.1.17 verbinden, Username und Passwort eingeben. <br />
 Danach führen wir standart package updates aus, um auf dem neusten stand zu sein.
 
@@ -127,13 +136,17 @@ Mit dem curl statement starten wir ein Shell Script, um Docker zu installieren:
 ```
 curl -sSL https://get.docker.com | sh
 ```
-Mit ```docker``` können wir überprüfen, ob docker korrekt installiert wurde. 
 Als nächstes müssen wir den Benutzer ```sugu``` in die dockergruppe hinzufügen:
 ```
 sudo usermod -aG docker sugu
 ```
-# Portainer Installation
-Um die Verwaltung der Container zu vereinfachen mit einem web GUI installieren wir Portainer:
+## Docker testen
+Nach der Installation von Docker und Docker-Compose kann man Programme schnell auf allen Betriebssystemen testen. Ob der Docker-Daemon läuft, verrät `docker version`.
+
+Ob Docker-Compose läuft, verrät `docker compose version`.
+## Portainer Installation
+Um die Verwaltung der Container zu vereinfachen mit einem web GUI installieren wir Portainer. 
+Portainer ist ein Open Source Werkzeug, um Container basierte Anwendungen unter Docker, Kubernetes, Docker Swarm und Azure ACI zu verwalten. Dabei stellt Portainer eine komfortable Benutzeroberfläche für das Management der Docker-Umgebung zur Verfügung.
 
 
 ```
@@ -143,19 +156,26 @@ sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/do
 ```
 Danach ist die Installation abgeschlossen. Nun können wir mit einem Browser Lokal auf das Webinterface zugreifen: ``http://sugu.local:9000/``
 
+<img src="Portainer.png" width="45%"> <img src="Container.PNG" width="45%">
 
-TODO mario: erklärung der Features, Bilder der Einstellungen des Raspi und Portainer webinterface
+
+
+TODO mario: erklärung der Features, Beschreibung idee
+
+
 
 # Features
 
-# Rollenverteilung "Simp" Rolle
 
-# Ping - Pong
+## Rollenverteilung "Simp" Rolle
 
 
-# @Everyone Bot schutz und Jail rollenvergabe
+## Ping - Pong
 
-# YEP chatbot
+
+## @Everyone Bot schutz und Jail rollenvergabe
+
+## YEP chatbot
 
 
 
