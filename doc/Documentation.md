@@ -4,11 +4,11 @@
     <img src="Suguha.png" alt="Logo" width=200 height=200>
   </a>
 
-<h3 align="center">Logo</h3>
-  <h3 align="center">Logo</h3>
+<h3 align="center">Suguha Kirigaya</h3>
+  <h3 align="center">Discord Bot</h3>
 
   <p align="center">
-    Short description
+    Discord Bot für Administration eines Discord Servers 
     <br>
     <a href="https://reponame/issues/new?template=bug.md">Report bug</a>
     ·
