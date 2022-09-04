@@ -1,8 +1,10 @@
+<
 <p align="center">
   <a href="https://example.com/">
-    <img src="https://via.placeholder.com/72" alt="Logo" width=72 height=72>
+    <img src="Suguha.png" alt="Logo" width=200 height=200>
   </a>
 
+<h3 align="center">Logo</h3>
   <h3 align="center">Logo</h3>
 
   <p align="center">
@@ -219,7 +221,7 @@ Uns betrifft das nicht in diesem Fall, da unsere Java Applikation in einem Docke
 
 ### Risiken:
 1. Stromausfall: Sollte es einen Stromausfall geben, wird der Discord Bot ,abstürtzen da wir ihn nicht redudant hosten.
-2. Internetausfall: Sollte <TODO MARIO ISP> ausfallen ist der Discord Bot auch nicht erreichbar.
+2. Internetausfall: Sollte die Internetverbindung ausfallen ist der Discord Bot auch nicht erreichbar.
 
 
 ## Docker
