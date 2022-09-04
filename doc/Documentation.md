@@ -1,4 +1,4 @@
-<
+
 <p align="center">
   <a href="https://example.com/">
     <img src="Suguha.png" alt="Logo" width=200 height=200>
@@ -35,7 +35,8 @@
 
 ## Einleitung
 
-Diese Dokument dient als Projektdefinition für unsere Projekt Arbeit in Modul Projektarbeit. In diesem Dokument wir die Aufgabe erläutert, unsere Idee und die zu verwendeten Techologien erklärt. Ausserdem werden die Rahmenbedingungen erkläutert.
+Im Modul Projektmanagement haben wir die Aufgabe, ein Projekt zu alsolvieren. 
+In diesem Dokument wir die Aufgabe erklärt sowie unsere Idee und die zu verwendeten Techologien erläutert. Ausserdem werden die Rahmenbedingungen festgehalten.
 
 ## Aufgabenstellung
 
@@ -268,10 +269,10 @@ main/
             │           ├── MessageCreateEventListener
             │           └── VoiceStateUpdateEventListener
             └──  reactions/
-                  │     ├── AddEveryoneReaction
+                  │     ├── AtEveryoneReaction
                   │     ├── SimpReaction
                   │     └── YepReaction
-                  ├── GlobalCommandRegistrar
+                  ├── GlobalCommandRegisterer
                   └── Sugu
  
 ```
@@ -282,7 +283,7 @@ Folgende 4 Teile sind die wichtigsten:
 1. Commands
 2. Reactions
 3. Listeners
-4. GlobalCommandRegistrar
+4. GlobalCommandRegisterer
 
 
 #### Commands:
@@ -299,7 +300,7 @@ Eine Reaction ist ein Event, auf welches man Reagieren möchte bsp. Statusänder
 Listeners handeln alle Events von Reactions und Commands.
 
 #### GlobalCommandRegistrar:
-Dient Regestierung von Events auf der Server Seite.
+Dient Registrierung von Events auf der Server Seite.
 
 
 #### Gliederungsvorteile
