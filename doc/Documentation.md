@@ -58,7 +58,6 @@ Mit diesem Projekt sollen folgende Ziele erreicht werden:
 ## Risikoanalyse
 
 Schadensausmass
-| | | | |
 |:---|:---|---:|---:|
 Schadensausmass| | | |
 Hoch|-Discord stellt keine Dienste <br />mehr bereit <br />-Java wird nicht weiter<br /> unterstützt| |
