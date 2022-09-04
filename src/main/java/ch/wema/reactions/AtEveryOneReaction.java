@@ -5,7 +5,7 @@ import discord4j.common.util.Snowflake;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import reactor.core.publisher.Mono;
 
-public class AddEveryOneReaction implements Reaction<MessageCreateEvent> {
+public class AtEveryOneReaction implements Reaction<MessageCreateEvent> {
     @Override
     public Mono<Void> handle(MessageCreateEvent event) {
         Mono.just(event)
