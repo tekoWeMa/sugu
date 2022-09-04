@@ -58,7 +58,7 @@ Mit diesem Projekt sollen folgende Ziele erreicht werden:
 - 3.	Aufbau der Infrastruktur für eine erweiterbare Lernumgebung
 
 ## Risikoanalyse
-Riesikoanalysengraph
+
 
 | Schadensausmass |                                                                                                    |        |      |
 |:----------------|:---------------------------------------------------------------------------------------------------|-------:|-----:|
