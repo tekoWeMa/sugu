@@ -159,7 +159,7 @@ sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/do
 ```
 Danach ist die Installation abgeschlossen. Nun können wir mit einem Browser Lokal auf das Webinterface zugreifen: ``http://sugu.local:9000/``
 
-<img src="Portainer.png" width="45%"> <img src="Container.PNG" width="45%">
+<img src="Portainer.PNG" width="45%"> <img src="Container.PNG" width="45%">
 
 
 
