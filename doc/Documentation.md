@@ -219,11 +219,10 @@ Systemübersicht:
 
 
 ## Discord API
-Wir verwenden die Discord API via der Java Biliothek discord4j.
+Wir verwenden die Discord API via der Java Bibliothek discord4j.
 
 ### Risiken:
-
-Sollte die Discord API down sein geht unser Bot natürlich nicht somit ist es ein single point of failure.
+Sollte die Discord API down sein, geht unser Bot natürlich nicht, somit ist es ein single point of failure.
 
 ## Raspberry PI Server
 Als Server verwenden wir einen Raspberry PI 4B 8 GB RAM.
@@ -236,27 +235,27 @@ Beim Raspberry PI ist es ein arm64v7.
 Uns betrifft das nicht in diesem Fall, da unsere Java Applikation in einem Docker Container gehostet wird.
 
 ### Risiken:
-1. Stromausfall: Sollte es einen Stromausfall geben, wird der Discord Bot ,abstürtzen da wir ihn nicht redudant hosten.
+1. Stromausfall: Sollte es einen Stromausfall geben, wird der Discord Bot, abstürzen da wir ihn nicht redundant hosten.
 2. Internetausfall: Sollte die Internetverbindung ausfallen ist der Discord Bot auch nicht erreichbar.
 
 
 ## Docker
 Wir verwenden docker als Container Technologie.
-Ermöglicht uns einfaches Deployment von der Applikation. Wenn Die Applikation auf dem Container Läuft, kann der Discord Bot auf allen Docker lauffähigen PCs gehostet werden.
-Zudem verwenden wir noch Docker Compose. Dieser Managed den Docker Container. Sollte dieser abstürtzen wird er neu gestartet. Dies Ermöglicht es uns eine hohe Uptime zu gewäreleisten.
+Ermöglicht uns einfaches Deployment von der Applikation. Wenn die Applikation auf dem Container läuft, kann der Discord Bot auf allen Docker lauffähigen PCs gehostet werden.
+Zudem verwenden wir noch Docker Compose. Dieser Managed den Docker Container. Sollte dieser abstürzen wird er neu gestartet. Dies Ermöglicht es uns eine hohe Uptime zu gewährleisten.
 
 ### Vorteile:
 Abgestürzte Container werden neu gestartet.
 ### Nachteile / Risiken:
-Wir haben eine zusätzliche Abhänigkeit welche wir managen müssen.
+Wir haben eine zusätzliche Abhängigkeit, welche wir managen müssen.
 
 
 ## Applikation
-Unser Discord Bot ist in Java geschrieben. Wir verwenden als biliothek discord4j, welche uns eine einfache integration mit Discord ermöglicht.
+Unser Discord Bot ist in Java geschrieben. Wir verwenden als bibliothek discord4j, welche uns eine einfache integration mit Discord ermöglicht.
 ### Vorteile:
-Java ist eine einfach zu lernende Sprache. Weiter gibt es schon viele Biliotheken, welche wir einbinden können.
+Java ist eine einfach zu lernende Sprache. Weiter gibt es schon viele Bibliotheken, welche wir einbinden können.
 ### Nachteile / Risiken:
-Wir haben eine direkte Abhängigkeit zu discord4j. Sollte die Biliothek nicht mehr gewartet werden, müssten wir Anspassungen selbst implentieren.
+Wir haben eine direkte Abhängigkeit zu discord4j. Sollte die bibliothek nicht mehr gewartet werden, müssten wir Anpassungen selbst implementieren.
 
 ## VCS
 Als VCS haben wir die Vorgabe Git
@@ -291,6 +290,7 @@ main/
  
 ```
 
+### Mario Please uml-schema.svg inzufügen
 
 Folgende 4 Teile sind die wichtigsten:
 
@@ -302,8 +302,8 @@ Folgende 4 Teile sind die wichtigsten:
 
 #### Commands:
 
-Commands oder auch Befehle sind alle Befehle welcher der Benutzer kontrolliert absetzen kann.<br />
-Diese Unterteilung ist zur seperierung von Klassen und dient der einfachen Übersicht.
+Commands oder auch Befehle sind alle Befehle, welcher der Benutzer kontrolliert absetzen kann.<br />
+Diese Unterteilung ist zur separierung von Klassen und dient der einfachen Übersicht.
 
 #### Reactions:
 
@@ -320,17 +320,19 @@ Dient zur Registrierung von Events auf der Server Seite.
 #### Gliederungsvorteile
 
 Anpassungen sind einfach zu erstellen, da man diese als Command oder als Reaction einfach hinzufügen kann und keinen bestehenden Code anpassen muss.
-Der der Core Ordner dient als Abstraction damit alle Reactions/Commands einen gleichen nenner haben ausserhalb des Objektes.
+Der Core Ordner dient als Abstraction damit alle Reactions/Commands einen gleichen nenner haben ausserhalb des Objektes.
 
 ## Reflektion
 
-#### Was ist gut geganen: TODO
+#### Was ist gut geganen:
+Die entscheidung das es ein Discord Bot werden sollte, war einfach zu treffen. Da Mario ein Discord Server hat und diesen mit den Bot Administrieren möchte. Die einarbeitung in das Discord Framework discord4j war zudem auch einfach, nachdem wir entdeckt haben wie wir denn Code inspecten können.
 
-#### Wo haben wir noch verbessung potenzial: TODO
+#### Wo haben wir noch verbessung potenzial:
+Wir haben noch potenzial bei der Aktualisierung von bot selbst wir haben an gedacht diese über Docker hub zu machen aber aus Zeit gründen haben wir uns entschlossen diese feature für später einzubauen.
+Bei der Java programmierung war es für uns beide neuland. Deswegen hatten wir am anfang noch mühe sachen umsetzen, diese ist aber in den Wochen immer besser geworden da wir vertrauter mit der Sprache und dem Framework geworden sind.
 
-#### Offne Punkte: TODO
-
-#### Aussicht: TODO
+#### Aussicht: 
+Wir hab beschlossen das dies Projekt eine grundlage sein soll für einen Discord Bot Infrastruktur haben wir erstellt und überall lauffähigen wo docker lauft. Von Code her sind wir sehr flexible wir können schnell neue Reactions oder Commands erstellen da wir das Framework erstellt haben. Jetzt brauchen wir nur noch mehr coole Ideen, welche wir umsetzen können.
 
 
 
