@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Documentation.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p align="center">
+  <a href="https://example.com/">
+    <img src="Suguha.png" alt="Logo" width=200 height=200>
+  </a>
+<h3 align="center">Suguha Kirigaya</h3>
+  <h3 align="center">Discord Bot</h3>
+<p align="center">
+    Discord Bot für Administration eines Discord Servers<br>
+    Marvin Huber, Mario Weilenmann
+    <br>
+    <a href="https://reponame/issues/new?template=bug.md">Report bug</a>
+    ·
+    <a href="https://reponame/issues/new?template=feature.md&labels=feature">Request feature</a>
+  </p>
+<h1 id="todo-management-summary">ToDo Management Summary</h1>
+<h1 id="dokumentation">Dokumentation</h1>
+<ul>
+<li><a href="#einleitung">Einleitung</a></li>
+<li><a href="#aufgabenstellung">Aufgabenstellung</a></li>
+<li><a href="#idee">Idee</a></li>
+<li><a href="#projektziele">Projektziele</a></li>
+<li><a href="#risikoanalyse">Risikoanalyse</a></li>
+<li><a href="#meilensteine">Meilensteine</a></li>
+<li><a href="#einrichtung-und-konfiguration">Einrichtung und Konfiguration</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#technische-doku">Technische Doku</a></li>
+<li><a href="#testing">Testing</a></li>
+</ul>
+<h2 id="einleitung">Einleitung</h2>
+<p>Im Modul Projektmanagement haben wir die Aufgabe, ein Projekt zu alsolvieren.
+In diesem Dokument wir die Aufgabe erklärt sowie unsere Idee und die zu verwendeten Techologien erläutert. Ausserdem werden die Rahmenbedingungen festgehalten.</p>
+<h2 id="aufgabenstellung">Aufgabenstellung</h2>
+<p>Unsere Aufgabe ist es, eine Projektarbeit in der Programmiersprache JAVA zu machen.</p>
+<h2 id="idee">Idee</h2>
+<p>Die Idee ist es, ein Tool zu entwickeln, welches die Administration eines grossen Discord Servers erleichtert.
+Dieses Soll erweiterbar sein und somit eine Lernplattform bilden, um uns zu unterstützen während der Schulzeit.
+Implementierung neuer Features oder Erweiterung der alten soll uns beim lernen der Programmiersprache JAVA ein Ansatz bieten.</p>
+<h2 id="projektziele">Projektziele</h2>
+<p>Durch Automatisation und Implementation von Tasks und Features (Rollenverteilung, Channelmanagement) soll der Verwaltungsaufwand des Discord Servers verringert werden.</p>
+<p>Mit diesem Projekt sollen folgende Ziele erreicht werden:</p>
+<ul>
+<li>
+<ol>
+<li>Automatisation von Rollenverteilung</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>Individuelle Befehle (Ping - Pong)</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>Aufbau der Infrastruktur für eine erweiterbare Lernumgebung</li>
+</ol>
+</li>
+</ul>
+<h2 id="risikoanalyse">Risikoanalyse</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Schadensausmass</th>
+<th style="text-align:left"></th>
+<th style="text-align:right"></th>
+<th style="text-align:right"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Hoch</td>
+<td style="text-align:left">-Discord stellt keine Dienste<br />mehr bereit <br />-Java wird nicht weiter<br /> unterstützt</td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left">Mittel</td>
+<td style="text-align:left"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left">Niedrig</td>
+<td style="text-align:left"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">Niedrig</td>
+<td style="text-align:right">Mittel</td>
+<td style="text-align:right">Hoch</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>Eintrittswarscheinlichkeit</strong></td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+</tbody>
+</table>
+<h1 id="meilensteine">Meilensteine</h1>
+<h2 id="chart">Chart</h2>
+<table>
+<thead>
+<tr>
+<th>Meilenstein</th>
+<th>Festgelegter Termin</th>
+<th>Fertigstellung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Projektbeginn</td>
+<td>29.04.2022</td>
+<td></td>
+</tr>
+<tr>
+<td>Projektantrag Abgabe</td>
+<td>07.05.2022</td>
+<td>07.05.2022</td>
+</tr>
+<tr>
+<td>Infrastruktur bereitgestellt</td>
+<td>27.05.2022</td>
+<td>30.07.2022</td>
+</tr>
+<tr>
+<td>Abgabe Projektarbeit</td>
+<td>17.09.2022</td>
+<td>17.09.2022</td>
+</tr>
+<tr>
+<td>Projektabschluss</td>
+<td>02.09.2022</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="termine">Termine</h2>
+<table>
+<thead>
+<tr>
+<th>Sitzungen</th>
+<th>Termine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Projektsitzungen</td>
+<td>03.06.2022, 29.08.2022</td>
+</tr>
+<tr>
+<td>Präsentation</td>
+<td>23.09.2022/30.09.2022</td>
+</tr>
+</tbody>
+</table>
+<h1 id="einrichtung-und-konfiguration">Einrichtung und Konfiguration</h1>
+<h2 id="raspberry-pi-einrichtung">Raspberry PI Einrichtung</h2>
+<p>Für den Discord Bot benötigen wir einen Host. Wir haben uns hier für ein Raspberry PI entschieden, da dieses einfach zu warten ist und wenig Platz benötigt.<br /></p>
+<p>Mit Hilfe von Raspberry PI Imager kann das gewünschte Betriebssystem installiert werden. Wir verwenden das PI OS 64-bit und schreiben dieses auf die Micro SD Karte.
+Bei erfolgreichem schreiben des Betriebssystems können wir die SD Karte einsetzen und mit einem USB-C den Raspberry Pi Computer mit Strom versorgen.</p>
+<h2 id="raspberry-konfiguration">Raspberry Konfiguration</h2>
+<p>Mittels HDMI können wir den Desktop des Betriebssystem anzeigen lassen und die ersten Konfigurationen vornehmen. <br /></p>
+<p>Mittels Setupmanager wählen wir als erstes die korrekte Region, Zeitzone und Sprache. Danach setzen wir ein Passwort sowie den Namen für den User. Wir benennen ihn nach unserem Projekt, also sugu. Wir benötigen den Namen und Passwort später, wenn wir via SSH darauf zugreifen wollen. <br /></p>
+<p>Wir setzen den Haken für das Screen Setup um optimierte Auflösungen zu erhalten für den Bildschirm. Da wir Ethernet verwenden, müssen wir uns nicht mit einem W-LAN verbinden. <br /></p>
+<p>Sobald wir mit einem Netzwerk verbunden sind, können wir im Setupmanager ein Update der Software durchführen.</p>
+<h2 id="ssh-einschalten">SSH einschalten</h2>
+<p>Um auf unseren User zugreifen zu können, müssen wir SSH aktivieren. Dafür klicken wir auf dem Desktop auf das Raspberry logo, wählen <strong>Preferences</strong> und dann <strong>Raspberry PI Configuration</strong>. Unter dem <strong>Interfaces</strong> Tab können wir SSH anwählen.</p>
+<p><img src="Raspi-Interface.png" width="25%"> <img src="SSH.png" width="30%"> <br /></p>
+<h2 id="statische-ip-vergeben">Statische IP vergeben</h2>
+<p>Um mit keinen Komplikationen konfrontiert zu werden, vergeben wir dem Raspberry PI eine Statische IP Addresse. Dafür öffnen wir das Terminal auf dem Desktop. Mittels <code>ifconfig</code> können wir die momentan zugeweiste IP des netzwerkes ansehen. In unserem Fall ist dies <strong>192.168.1.17</strong>.<br />Mittels <code>sudo nano /etc/dhcpcd.conf</code> können wir direkt in die config file unsere gewünschte IP Addresse schreiben. Dies machen wir wiefolgt:</p>
+<pre class="hljs"><code><div>interface eth0
+static ip_address=192.168.1.17
+static routers=192.168.1.1
+static domain_name_servers=8.8.8.8 8.8.4.4
+
+</div></code></pre>
+<p>Einstellungen mit <code>Ctrl + o</code> schreiben und den Editor mit <code>Ctrl + x</code> verlassen. Danach den Raspi neustarten:</p>
+<p><code>sudo reboot</code></p>
+<h2 id="docker-installation">Docker Installation</h2>
+<p>Mit Docker ist es einfach, Server-Software Auszuprobieren und zu Betreiben. So Installiert man die Container-Plattform für gängige Betriebssysteme auf dem Server oder Entwickler-PC, hier in unserem Fall das Raspberry PI.</p>
+<p>Da nun eine Statische IP gesetzt wurde, kann via SSH verbunden werden. Mittels dem Programm Putty auf 192.168.1.17 verbinden, Username und Passwort eingeben. <br />
+Danach führen wir standart package updates aus, um auf dem neusten stand zu sein.</p>
+<pre class="hljs"><code><div>sudo apt update
+
+sudo apt upgrade
+</div></code></pre>
+<p>Mit dem curl statement starten wir ein Shell Script, um Docker zu installieren:</p>
+<pre class="hljs"><code><div>curl -sSL https://get.docker.com | sh
+</div></code></pre>
+<p>Als nächstes müssen wir den Benutzer <code>sugu</code> in die dockergruppe hinzufügen:</p>
+<pre class="hljs"><code><div>sudo usermod -aG docker sugu
+</div></code></pre>
+<h2 id="docker-testen">Docker testen</h2>
+<p>Nach der Installation von Docker und Docker-Compose kann man Programme schnell auf allen Betriebssystemen testen. Ob der Docker-Daemon läuft, verrät <code>docker version</code>.</p>
+<p>Ob Docker-Compose läuft, verrät <code>docker compose version</code>.</p>
+<h2 id="portainer-installation">Portainer Installation</h2>
+<p>Um die Verwaltung der Container zu vereinfachen mit einem web GUI installieren wir Portainer.
+Portainer ist ein Open Source Werkzeug, um Container basierte Anwendungen unter Docker, Kubernetes, Docker Swarm und Azure ACI zu verwalten. Dabei stellt Portainer eine komfortable Benutzeroberfläche für das Management der Docker-Umgebung zur Verfügung.</p>
+<pre class="hljs"><code><div>sudo docker pull portainer/portainer-ce:linux-arm
+
+sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:linux-arm
+</div></code></pre>
+<p>Danach ist die Installation abgeschlossen. Nun können wir mit einem Browser Lokal auf das Webinterface zugreifen: <code>http://sugu.local:9000/</code></p>
+<p><img src="Portainer.PNG" width="45%"> <img src="Container.PNG" width="45%"></p>
+<h2 id="discord-%C3%BCbersicht">Discord Übersicht</h2>
+<p>Discord ist eine App für Nachrichten, Chats und Videoanrufe.
+Das Programm kann auf dem Smartphone oder auch auf dem PC installiert werden.</p>
+<p>In den Chats lassen sich auch Videos, Bilder oder Dokumente versenden.
+Auf Discord kann man auch eigene Server erstellen. Server sind Bereiche, in denen man sich mit Freunden oder anderen Usern zu einem speziellen Thema austauschen kann.
+Auf einem Server kann man verschiedene Sprach- und Textkanäle mit verschiedenen Berechtigungen erstellen. Diese Berechtigungen werden über Rollen verwaltet und können den Usern zugewiesen werden.
+<img src="Discord.PNG" width="100%"></p>
+<h1 id="features">Features</h1>
+<h2 id="rollenverteilung-%22simp%22-rolle">Rollenverteilung &quot;Simp&quot; Rolle</h2>
+<p>Um auf einem grossen Server zu erkennen, welcher User zu welcher Freundesgruppe gehört, ist es praktisch einer Rollengruppe anzugehören.
+Immer dann, wenn ein Benutzer sich mit dem Sprachkanal &quot;Katari`s Simpsumpf&quot; verbindet, wird dem User über das ausgelöste Event die Rolle &quot;Simp&quot; zugewiesen.
+Dadurch ist</p>
+<h2 id="ping---pong">Ping - Pong</h2>
+<p>Um zu Überprüfen ob der Discord Bot funktioniert und läuft, wird eine Ping - Pong Funktion eingebaut.
+Mit <code>/Ping</code> kann ein Event ausgelöst werden. Dieses wird mit der Reaktion &quot;Pong!&quot; beantwortet im Chat vom Discord Bot. Somit weiss man, dass er Online ist und funktioniert.</p>
+<h2 id="everyone-bot-schutz-und-jail-rollenvergabe">@Everyone Bot Schutz und Jail Rollenvergabe</h2>
+<p>Der Chatbefehl <code>@everyone</code> wird häufig von Scam-Bots verwendet, um die Aufmerksamkeit durch einen ping an alle zu erhalten. Dies geschieht dann meistens in jedem Textkanal.
+Dabei wird gehofft, dass die Personen auf einen Link klicken. Um vorzubeugen, dass jemand auf diesen Link klickt, Löscht der Discord Bot die Nachricht. Weiter gibt er dem Benutzer eine Rolle: &quot;Jail&quot;.
+Diese Rolle wurde auf dem Discord Server so konfiguriert, dass der Benutzer keine Schreibberechtigung mehr hat und somit keine Links mehr posten kann.</p>
+<h2 id="yep-chatbot">YEP chatbot</h2>
+<p>Der Ausdruck &quot;YEP&quot; als Bestätigung auf eine Aussage ist in vielen Gruppen sehr verbreitet. Deswegen Soll der Discord Bot davon nicht ausgeschlossen werden.
+Jedes mal wenn ein Satz das Wort <code>yep</code> enthält, meldet sich der Discord Bot mit <code>YEP</code> über das ausgelöste Event.</p>
+<h1 id="discord-bot-erstellen">Discord Bot erstellen</h1>
+<p>Zuerst müssen wir einen neuen Discord Bot erstellen im <a href="https://discord.com/developers/applications/">Discord Developers</a>
+ToDo bild discord_new_application.png</p>
+<p>Dann geben wir denn Name ein und akzeptieren TOS:
+ToDo build discord_bot_name.png</p>
+<p>Wir gehen dann auf OAuth2 nachher URL Generator selektieren bot, Administrator und klicken auf Copy.
+ToDo discord_bot_url.png</p>
+<h1 id="technische-doku">Technische Doku</h1>
+<p>Unser Applikation ist in Java geschrieben. Als Buildsystem verweden wir Gradle damit wir die Java Applikation erstellen können.</p>
+<p>Gliederung der Applikation:</p>
+<img src="uml-schema.svg" width="80%">
+<p>Systemübersicht:</p>
+<ul>
+<li><a href="#discord-API">Discord API</a></li>
+<li><a href="#raspberry-pi-server">Raspberry PI / Server</a></li>
+<li><a href="#docker">Docker</a></li>
+<li><a href="#applikation">Applikation, Dependencies</a></li>
+<li><a href="#reflektion">Reflektion</a></li>
+</ul>
+<h2 id="discord-api">Discord API</h2>
+<p>Wir verwenden die Discord API via der Java Bibliothek discord4j.</p>
+<h3 id="risiken">Risiken:</h3>
+<p>Sollte die Discord API down sein, geht unser Bot natürlich nicht, somit ist es ein single point of failure.</p>
+<h2 id="raspberry-pi-server">Raspberry PI Server</h2>
+<p>Als Server verwenden wir einen Raspberry PI 4B 8 GB RAM.</p>
+<h3 id="vorteile">Vorteile:</h3>
+<p>Dieser hat den Vorteil wenig Ressourcen zu verbrauchen (Strom, Platz). Ideal Für unseren Use Case.</p>
+<h3 id="nachteile">Nachteile</h3>
+<p>Ein Nachteil kann sein, dass bestimmte Software nicht läuft, da es eine andere CPU Architecture hat.
+Beim Raspberry PI ist es ein arm64v7.</p>
+<p>Uns betrifft das nicht in diesem Fall, da unsere Java Applikation in einem Docker Container gehostet wird.</p>
+<h3 id="risiken">Risiken:</h3>
+<ol>
+<li>Stromausfall: Sollte es einen Stromausfall geben, wird der Discord Bot, abstürzen da wir ihn nicht redundant hosten.</li>
+<li>Internetausfall: Sollte die Internetverbindung ausfallen ist der Discord Bot auch nicht erreichbar.</li>
+</ol>
+<h2 id="docker">Docker</h2>
+<p>Wir verwenden docker als Container Technologie.
+Ermöglicht uns einfaches Deployment von der Applikation. Wenn die Applikation auf dem Container läuft, kann der Discord Bot auf allen Docker lauffähigen PCs gehostet werden.
+Zudem verwenden wir noch Docker Compose. Dieser Managed den Docker Container. Sollte dieser abstürzen wird er neu gestartet. Dies Ermöglicht es uns eine hohe Uptime zu gewährleisten.</p>
+<h3 id="vorteile">Vorteile:</h3>
+<p>Abgestürzte Container werden neu gestartet.</p>
+<h3 id="nachteile--risiken">Nachteile / Risiken:</h3>
+<p>Wir haben eine zusätzliche Abhängigkeit, welche wir managen müssen.</p>
+<h2 id="applikation">Applikation</h2>
+<p>Unser Discord Bot ist in Java geschrieben. Wir verwenden als bibliothek discord4j, welche uns eine einfache integration mit Discord ermöglicht.</p>
+<h3 id="vorteile">Vorteile:</h3>
+<p>Java ist eine einfach zu lernende Sprache. Weiter gibt es schon viele Bibliotheken, welche wir einbinden können.</p>
+<h3 id="nachteile--risiken">Nachteile / Risiken:</h3>
+<p>Wir haben eine direkte Abhängigkeit zu discord4j. Sollte die bibliothek nicht mehr gewartet werden, müssten wir Anpassungen selbst implementieren.</p>
+<h2 id="vcs">VCS</h2>
+<p>Als VCS haben wir die Vorgabe Git</p>
+<h3 id="vorgehen-beim-programmieren">Vorgehen beim Programmieren</h3>
+<p>Wir haben uns dazu entschieden die Applikation in Pair Programming zu erstellen. Somit haben wir einen direkten Austausch von Ideen, wie wir unser gewünschtes Feature umsetzen können.
+Der Vorteil dabei ist, dass wir beide den Code kennen und diesen einfach warten können.</p>
+<pre class="hljs"><code><div>main/
+└── Java/
+      └── ch.wema/
+            ├── commands/
+            │        └── PingCommand
+            ├── core/
+            │    ├── command/
+            │           └── Command
+            │    └──reaction/
+            │           └── Reaction
+            ├── event.listeners/
+            │           ├── ChatInpitInteractionEventListener
+            │           ├── MessageCreateEventListener
+            │           └── VoiceStateUpdateEventListener
+            └──  reactions/
+                  │     ├── AtEveryoneReaction
+                  │     ├── SimpReaction
+                  │     └── YepReaction
+                  ├── GlobalCommandRegistrar
+                  └── Sugu
+ 
+</div></code></pre>
+<p>Folgende 4 Teile sind die wichtigsten:</p>
+<ol>
+<li>Commands</li>
+<li>Reactions</li>
+<li>Listeners</li>
+<li>GlobalCommandRegistrar</li>
+</ol>
+<h4 id="commands">Commands:</h4>
+<p>Commands oder auch Befehle sind alle Befehle, welcher der Benutzer kontrolliert absetzen kann.<br />
+Diese Unterteilung ist zur separierung von Klassen und dient der einfachen Übersicht.</p>
+<h4 id="reactions">Reactions:</h4>
+<p>Eine Reaction ist ein Event, auf welches man Reagieren möchte bsp. Statusänderung von Usern.</p>
+<h4 id="listeners">Listeners:</h4>
+<p>Listeners handeln alle Events von Reactions und Commands.</p>
+<h4 id="globalcommandregistrar">GlobalCommandRegistrar:</h4>
+<p>Dient zur Registrierung von Events auf der Server Seite.</p>
+<h4 id="gliederungsvorteile">Gliederungsvorteile</h4>
+<p>Anpassungen sind einfach zu erstellen, da man diese als Command oder als Reaction einfach hinzufügen kann und keinen bestehenden Code anpassen muss.
+Der Core Ordner dient als Abstraction damit alle Reactions/Commands einen gleichen nenner haben ausserhalb des Objektes.</p>
+<h2 id="reflektion-todo-%C3%BCberpr%C3%BCfen-und-erg%C3%A4nzen">Reflektion ToDo überprüfen und ergänzen</h2>
+<h4 id="was-ist-gut-geganen">Was ist gut geganen:</h4>
+<p>Die Entscheidung dass es ein Discord Bot werden sollte, war einfach zu treffen. Da Mario ein Discord Server hat und diesen mit den Bot Administrieren möchte. Die einarbeitung in das Discord Framework discord4j war zudem auch einfach, nachdem wir entdeckt haben wie wir den Code inspecten können.</p>
+<h4 id="wo-haben-wir-noch-verbessung-potenzial">Wo haben wir noch verbessung potenzial:</h4>
+<p>Wir haben noch potenzial bei der Aktualisierung vom Bot selbst. Automatische Updates wären mit Docker hub möglich.
+Bei der Java programmierung war es für uns beide neuland. Deswegen hatten wir am anfang noch mühe sachen umsetzen, diese ist aber in den Wochen immer besser geworden da wir vertrauter mit der Sprache und dem Framework geworden sind.
+Wir hatten Probleme bei der Erstellung von der fat jar file.</p>
+<h4 id="aussicht">Aussicht:</h4>
+<p>Wir hab beschlossen dass dieses Projekt eine grundlage sein soll für eine Discord Bot Infrastruktur. Von Code her sind wir sehr flexible und können schnell neue Reactions oder Commands erstellen da wir das Framework erstellt haben. Jetzt brauchen wir nur noch mehr coole Ideen, welche wir umsetzen können.</p>
+<h2 id="testing">Testing</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Test</td>
+<td>/Ping befehl</td>
+</tr>
+<tr>
+<td>Testablauf</td>
+<td>/ping in einem channel schreiben</td>
+</tr>
+<tr>
+<td>Erwartetes Resultat</td>
+<td>Reaktion vom Discord Bot: &quot;Pong!</td>
+</tr>
+<tr>
+<td>Resultat</td>
+<td><img src="PingTest.PNG" width="80%"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Test</td>
+<td>Yep Reaktion</td>
+</tr>
+<tr>
+<td>Testablauf</td>
+<td>Eine Nachricht im Chat mit &quot;yep&quot; inbegriffen</td>
+</tr>
+<tr>
+<td>Erwartetes Resultat</td>
+<td>eine Antwort vom Bot mit &quot;YEP&quot;</td>
+</tr>
+<tr>
+<td>Resultat</td>
+<td><img src="TestingYEP.PNG" width="80%"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Test</td>
+<td>Automatische Rollenvergabe &quot;Simp&quot;</td>
+</tr>
+<tr>
+<td>Testablauf</td>
+<td>In den Sprachkanal joinen</td>
+</tr>
+<tr>
+<td>Erwartetes Resultat</td>
+<td>Rolle &quot;Simp&quot; erhalten</td>
+</tr>
+<tr>
+<td>Resultat</td>
+<td><img src="SimpTest.PNG" width="80%"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Test</td>
+<td>@everyone unterdrückung</td>
+</tr>
+<tr>
+<td>Testablauf</td>
+<td>@everyone in den Chat schreiben</td>
+</tr>
+<tr>
+<td>Erwartetes Resultat</td>
+<td>Löschen der Nachricht und Jail Rolle bekommen</td>
+</tr>
+<tr>
+<td>Resultat</td>
+<td><img src="JailTest.PNG" width="80%"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="copyright-and-license">Copyright and license</h2>
+<p>LGPL-3.0 license</p>
+<p>Copyright (c) GitHub, Inc. and the https://opencollective.com/Discord4J contributors.</p>
+
+</body>
+</html>

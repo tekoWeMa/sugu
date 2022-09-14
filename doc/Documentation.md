@@ -213,21 +213,21 @@ Jedes mal wenn ein Satz das Wort `yep` enthält, meldet sich der Discord Bot mit
 # Discord Bot erstellen
 
 Zuerst müssen wir einen neuen Discord Bot erstellen im [Discord Developers](https://discord.com/developers/applications/)
-ToDo bild discord_new_application.png
+<img src="discord_new_application.PNG" width="80%">
 
-Dann geben wir denn Name ein und akzeptieren TOS:
-ToDo build discord_bot_name.png
+Dann geben wir denn Namen ein und akzeptieren TOS:
+<img src="discord_bot_name.png" width="80%">
 
-Auf Bot nachher klicken wir auf Add Bot
-ToDo discord_bot_add.png
+Beim Bot nachher klicken wir auf Add Bot
+<img src="discord_bot.png" width="80%">
 
-Wir gehen dann auf OAuth2 nachher URL Generator selektieren bot, Administrator und klicken auf Copy.
-ToDo discord_bot_url.png
+Wir gehen dann auf OAuth2, dann auf URL generator. Wir selektieren Bot, wählen Administrator und klicken auf Copy.
+<img src="discord_bot_url.png" width="100%">
 
-Mit dem ersteller URL in einen Webbrowser eingeben
-ToDo discord_invite.png
+Die erstellte URL im Webbrowser eingeben
+<img src="discord_invite.png" width="80%">
 
-Nachher noch denn Server selektieren und auf Continue klicken somit ist der Bot auch auf dem Server.
+Nachher noch den Server selektieren und auf Continue klicken um den Bot auf dem Server zu Authentifizieren.
 
 # Technische Doku
 
