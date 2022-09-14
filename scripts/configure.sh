@@ -11,7 +11,7 @@ then
   echo "DISCORD_CLIENT_TOKEN=${token}" > "${env_path}"
 fi
 
-if [ ! -f "${env_path}" ]
+if [ ! -f "${makefile_path}" ]
 then
   cp "${env_path}" "${makefile_path}"
 fi
