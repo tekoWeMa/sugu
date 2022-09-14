@@ -15,6 +15,7 @@
     <a href="https://reponame/issues/new?template=feature.md&labels=feature">Request feature</a>
   </p>
 
+# ToDo Management Summary
 
 # Dokumentation
 
@@ -206,9 +207,7 @@ Jedes mal wenn ein Satz das Wort `yep` enthält, meldet sich der Discord Bot mit
 Unser Applikation ist in Java geschrieben. Als Buildsystem verweden wir Gradle damit wir die Java Applikation erstellen können.
 
 Gielderung der Applikation:
-TODO BILD HINZUFüGEN SYSTEMüBERSICHT
-TODO BILD HINZUFüGEN SCHEMA
-TODO BILD HINZUFüGEN KLASSEN DIAGRAM
+### Mario Please uml-schema.svg inzufügen
 
 Systemübersicht:
 - [Discord API](#discord-API)
@@ -290,8 +289,6 @@ main/
  
 ```
 
-### Mario Please uml-schema.svg inzufügen
-
 Folgende 4 Teile sind die wichtigsten:
 
 1. Commands
@@ -322,7 +319,7 @@ Dient zur Registrierung von Events auf der Server Seite.
 Anpassungen sind einfach zu erstellen, da man diese als Command oder als Reaction einfach hinzufügen kann und keinen bestehenden Code anpassen muss.
 Der Core Ordner dient als Abstraction damit alle Reactions/Commands einen gleichen nenner haben ausserhalb des Objektes.
 
-## Reflektion
+## Reflektion ToDo überprüfen und ergänzen
 
 #### Was ist gut geganen:
 Die entscheidung das es ein Discord Bot werden sollte, war einfach zu treffen. Da Mario ein Discord Server hat und diesen mit den Bot Administrieren möchte. Die einarbeitung in das Discord Framework discord4j war zudem auch einfach, nachdem wir entdeckt haben wie wir denn Code inspecten können.
