@@ -218,6 +218,9 @@ ToDo bild discord_new_application.png
 Dann geben wir denn Name ein und akzeptieren TOS:
 ToDo build discord_bot_name.png
 
+Auf Bot nachher klicken wir auf Add Bot
+ToDo discord_bot_add.png
+
 Wir gehen dann auf OAuth2 nachher URL Generator selektieren bot, Administrator und klicken auf Copy.
 ToDo discord_bot_url.png
 
