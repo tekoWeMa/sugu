@@ -9,5 +9,9 @@ then
   echo "Please provide: DISCORD_CLIENT_TOKEN"
   read -r token
   echo "DISCORD_CLIENT_TOKEN=${token}" > "${env_path}"
+fi
+
+if [ ! -f "${env_path}" ]
+then
   cp "${env_path}" "${makefile_path}"
 fi
