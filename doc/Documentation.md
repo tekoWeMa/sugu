@@ -224,6 +224,11 @@ ToDo discord_bot_add.png
 Wir gehen dann auf OAuth2 nachher URL Generator selektieren bot, Administrator und klicken auf Copy.
 ToDo discord_bot_url.png
 
+Mit dem ersteller URL in einen Webbrowser eingeben
+ToDo discord_invite.png
+
+Nachher noch denn Server selektieren und auf Continue klicken somit ist der Bot auch auf dem Server.
+
 # Technische Doku
 
 Unser Applikation ist in Java geschrieben. Als Buildsystem verweden wir Gradle damit wir die Java Applikation erstellen können.
