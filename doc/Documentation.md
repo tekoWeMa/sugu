@@ -16,13 +16,10 @@
   </p>
 
 
-
-# Dokumentation
-
+# Inhaltsverzeichnis
 - [Management Summary](#management-summary)
 - [Einleitung](#einleitung)
-
-
+- [Dokumentation](#dokumentation)
 - [Aufgabenstellung](#aufgabenstellung)
 - [Idee](#idee)
 - [Projektziele](#projektziele)
@@ -57,6 +54,7 @@ Die Projektarbeit bietet eine gute, erweiterbare Grundstruktur. Diese ermöglich
 Der Arbeitsaufwand des Servers wurde spürbar verkleinert.
 Durch dieses Projekt konnten wir unser Wissen über Java erweitern.
 
+# Dokumentation
 ## Aufgabenstellung
 
 Unsere Aufgabe ist es, eine Projektarbeit in der Programmiersprache JAVA zu machen.
@@ -82,7 +80,7 @@ Mit diesem Projekt sollen folgende Ziele erreicht werden:
 
 | Schadensausmass |                                                                                                 |        |      |
 | :-------------- | :---------------------------------------------------------------------------------------------- | -----: | ---: |
-| Hoch            | -Discord stellt keine Dienste<br />mehr bereit <br />-Java wird nicht weiter<br /> unterstützt |        |      |
+| Hoch            | -Discord stellt keine Dienste<br />mehr bereit <br />-Java wird nicht weiter<br /> unterstützt  |        |      |
 | Mittel          |                                                                                                 |        |      |
 | Niedrig         |                                                                                                 |        |      |
 |                 | Niedrig                                                                                         | Mittel | Hoch |
@@ -98,7 +96,7 @@ Mit diesem Projekt sollen folgende Ziele erreicht werden:
 | Projektbeginn                | 29.04.2022          |                |
 | Projektantrag Abgabe         | 07.05.2022          | 07.05.2022     |
 | Infrastruktur bereitgestellt | 27.05.2022          | 30.07.2022     |
-| Abgabe Projektarbeit         | 17.09.2022          | 17.09.2022     |
+| Abgabe Projektarbeit         | 17.09.2022          | 16.09.2022     |
 | Projektabschluss             | 02.09.2022          |                |
 
 ## Termine
@@ -264,7 +262,7 @@ Systemübersicht:
 - [Discord API](#discord-API)
 - [Raspberry PI / Server](#raspberry-pi-server)
 - [Docker](#docker)
-- [Applikation, Dependencies](#applikation)
+- [Applikation](#applikation)
 - [Reflektion](#reflektion)
 
 ## Discord API
@@ -441,4 +439,4 @@ Jetzt brauchen wir nur noch mehr coole Ideen, welche wir umsetzen können.
 
 LGPL-3.0 license
 
-Copyright (c) GitHub, Inc. and the https://opencollective.com/Discord4J contributors.
+The https://opencollective.com/Discord4J contributors.
