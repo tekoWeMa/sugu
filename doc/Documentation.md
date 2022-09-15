@@ -15,11 +15,14 @@
     <a href="https://reponame/issues/new?template=feature.md&labels=feature">Request feature</a>
   </p>
 
-# ToDo Management Summary
+
 
 # Dokumentation
 
+- [Management Summary](#management-summary)
 - [Einleitung](#einleitung)
+
+
 - [Aufgabenstellung](#aufgabenstellung)
 - [Idee](#idee)
 - [Projektziele](#projektziele)
@@ -30,10 +33,29 @@
 - [Technische Doku](#technische-doku)
 - [Testing](#testing)
 
+# Management Summary
+
 ## Einleitung
 
-Im Modul Projektmanagement haben wir die Aufgabe, ein Projekt zu alsolvieren.
-In diesem Dokument wir die Aufgabe erklärt sowie unsere Idee und die zu verwendeten Techologien erläutert. Ausserdem werden die Rahmenbedingungen festgehalten.
+Im Modul Projektmanagement haben wir die Aufgabe, ein Projekt zu absolvieren.
+In diesem Dokument wir die Aufgabe erklärt sowie unsere Idee und die zu verwendeten Techologien erläutert. 
+Ausserdem werden die Rahmenbedingungen festgehalten.
+
+## Hintergrund
+
+Ein grosser Discord-server ist mit grossem Verwaltungsaufwand verbunden.
+Mit einem Discord bot wollen wir Aufgaben automatisieren und den Zeitaufwand verkleinern.
+
+## Funktion
+
+Suguha Kirigaya ist ein Discord Bot. Der Bot kann mit verschiedenen Befehlen Interagieren und automatisiert Rollen verteilen. 
+Als eine erweiterbare Infrastruktur können Funktionen einfach hinzugefügt und erweitert werden.
+
+## Reflexion
+
+Die Projektarbeit bietet eine gute, erweiterbare Grundstruktur. Diese ermöglicht uns, den Bot einfach und gezielt zu erweitern.
+Der Arbeitsaufwand des Servers wurde spürbar verkleinert.
+Durch dieses Projekt konnten wir unser Wissen über Java erweitern.
 
 ## Aufgabenstellung
 
@@ -362,7 +384,7 @@ Dient zur Registrierung von Events auf der Server Seite.
 Anpassungen sind einfach zu erstellen, da man diese als Command oder als Reaction einfach hinzufügen kann und keinen bestehenden Code anpassen muss.
 Der Core Ordner dient als Abstraction damit alle Reactions/Commands einen gleichen nenner haben ausserhalb des Objektes.
 
-## Reflektion ToDo überprüfen und ergänzen
+## Reflektion
 
 #### Was ist gut geganen:
 
@@ -376,7 +398,9 @@ Wir hatten Probleme bei der Erstellung von der fat jar file.
 
 #### Aussicht:
 
-Wir hab beschlossen dass dieses Projekt eine grundlage sein soll für eine Discord Bot Infrastruktur. Von Code her sind wir sehr flexible und können schnell neue Reactions oder Commands erstellen da wir das Framework erstellt haben. Jetzt brauchen wir nur noch mehr coole Ideen, welche wir umsetzen können.
+Wir hab beschlossen dass dieses Projekt eine grundlage sein soll für eine Discord Bot Infrastruktur. 
+Von Code her sind wir sehr flexible und können schnell neue Reactions oder Commands erstellen da wir das Framework erstellt haben. 
+Jetzt brauchen wir nur noch mehr coole Ideen, welche wir umsetzen können.
 
 ## Testing
 
