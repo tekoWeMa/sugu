@@ -10,6 +10,9 @@ CONTAINER_TAG_NAME		:= $(CONTAINER_TAG):$(CONTAINER_TAG_VERSION)
 PHONY: build
 build: docker-compose-build
 
+PHONY: down
+down: stop
+
 PHONY: stop
 stop: docker-compose-stop
 
