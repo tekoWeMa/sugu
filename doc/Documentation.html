@@ -379,10 +379,11 @@ code {
     ·
     <a href="https://reponame/issues/new?template=feature.md&labels=feature">Request feature</a>
   </p>
-<h1 id="todo-management-summary">ToDo Management Summary</h1>
-<h1 id="dokumentation">Dokumentation</h1>
+<h1 id="inhaltsverzeichnis">Inhaltsverzeichnis</h1>
 <ul>
+<li><a href="#management-summary">Management Summary</a></li>
 <li><a href="#einleitung">Einleitung</a></li>
+<li><a href="#dokumentation">Dokumentation</a></li>
 <li><a href="#aufgabenstellung">Aufgabenstellung</a></li>
 <li><a href="#idee">Idee</a></li>
 <li><a href="#projektziele">Projektziele</a></li>
@@ -393,9 +394,22 @@ code {
 <li><a href="#technische-doku">Technische Doku</a></li>
 <li><a href="#testing">Testing</a></li>
 </ul>
+<h1 id="management-summary">Management Summary</h1>
 <h2 id="einleitung">Einleitung</h2>
-<p>Im Modul Projektmanagement haben wir die Aufgabe, ein Projekt zu alsolvieren.
-In diesem Dokument wir die Aufgabe erklärt sowie unsere Idee und die zu verwendeten Techologien erläutert. Ausserdem werden die Rahmenbedingungen festgehalten.</p>
+<p>Im Modul Projektmanagement haben wir die Aufgabe, ein Projekt zu absolvieren.
+In diesem Dokument wir die Aufgabe erklärt sowie unsere Idee und die zu verwendeten Techologien erläutert.
+Ausserdem werden die Rahmenbedingungen festgehalten.</p>
+<h2 id="hintergrund">Hintergrund</h2>
+<p>Ein grosser Discord-server ist mit grossem Verwaltungsaufwand verbunden.
+Mit einem Discord bot wollen wir Aufgaben automatisieren und den Zeitaufwand verkleinern.</p>
+<h2 id="funktion">Funktion</h2>
+<p>Suguha Kirigaya ist ein Discord Bot. Der Bot kann mit verschiedenen Befehlen Interagieren und automatisiert Rollen verteilen.
+Als eine erweiterbare Infrastruktur können Funktionen einfach hinzugefügt und erweitert werden.</p>
+<h2 id="reflexion">Reflexion</h2>
+<p>Die Projektarbeit bietet eine gute, erweiterbare Grundstruktur. Diese ermöglicht uns, den Bot einfach und gezielt zu erweitern.
+Der Arbeitsaufwand des Servers wurde spürbar verkleinert.
+Durch dieses Projekt konnten wir unser Wissen über Java erweitern.</p>
+<h1 id="dokumentation">Dokumentation</h1>
 <h2 id="aufgabenstellung">Aufgabenstellung</h2>
 <p>Unsere Aufgabe ist es, eine Projektarbeit in der Programmiersprache JAVA zu machen.</p>
 <h2 id="idee">Idee</h2>
@@ -494,7 +508,7 @@ Implementierung neuer Features oder Erweiterung der alten soll uns beim lernen d
 <tr>
 <td>Abgabe Projektarbeit</td>
 <td>17.09.2022</td>
-<td>17.09.2022</td>
+<td>16.09.2022</td>
 </tr>
 <tr>
 <td>Projektabschluss</td>
@@ -595,11 +609,16 @@ Diese Rolle wurde auf dem Discord Server so konfiguriert, dass der Benutzer kein
 Jedes mal wenn ein Satz das Wort <code>yep</code> enthält, meldet sich der Discord Bot mit <code>YEP</code> über das ausgelöste Event.</p>
 <h1 id="discord-bot-erstellen">Discord Bot erstellen</h1>
 <p>Zuerst müssen wir einen neuen Discord Bot erstellen im <a href="https://discord.com/developers/applications/">Discord Developers</a>
-ToDo bild discord_new_application.png</p>
-<p>Dann geben wir denn Name ein und akzeptieren TOS:
-ToDo build discord_bot_name.png</p>
-<p>Wir gehen dann auf OAuth2 nachher URL Generator selektieren bot, Administrator und klicken auf Copy.
-ToDo discord_bot_url.png</p>
+<img src="discord_new_application.PNG" width="80%"></p>
+<p>Dann geben wir denn Namen ein und akzeptieren TOS:
+<img src="discord_bot_name.png" width="80%"></p>
+<p>Beim Bot nachher klicken wir auf Add Bot
+<img src="discord_bot.png" width="80%"></p>
+<p>Wir gehen dann auf OAuth2, dann auf URL generator. Wir selektieren Bot, wählen Administrator und klicken auf Copy.
+<img src="discord_bot_url.png" width="100%"></p>
+<p>Die erstellte URL im Webbrowser eingeben
+<img src="discord_invite.png" width="80%"></p>
+<p>Nachher noch den Server selektieren und auf Continue klicken um den Bot auf dem Server zu Authentifizieren.</p>
 <h1 id="technische-doku">Technische Doku</h1>
 <p>Unser Applikation ist in Java geschrieben. Als Buildsystem verweden wir Gradle damit wir die Java Applikation erstellen können.</p>
 <p>Gliederung der Applikation:</p>
@@ -609,7 +628,7 @@ ToDo discord_bot_url.png</p>
 <li><a href="#discord-API">Discord API</a></li>
 <li><a href="#raspberry-pi-server">Raspberry PI / Server</a></li>
 <li><a href="#docker">Docker</a></li>
-<li><a href="#applikation">Applikation, Dependencies</a></li>
+<li><a href="#applikation">Applikation</a></li>
 <li><a href="#reflektion">Reflektion</a></li>
 </ul>
 <h2 id="discord-api">Discord API</h2>
@@ -689,7 +708,7 @@ Diese Unterteilung ist zur separierung von Klassen und dient der einfachen Über
 <h4 id="gliederungsvorteile">Gliederungsvorteile</h4>
 <p>Anpassungen sind einfach zu erstellen, da man diese als Command oder als Reaction einfach hinzufügen kann und keinen bestehenden Code anpassen muss.
 Der Core Ordner dient als Abstraction damit alle Reactions/Commands einen gleichen nenner haben ausserhalb des Objektes.</p>
-<h2 id="reflektion-todo-%C3%BCberpr%C3%BCfen-und-erg%C3%A4nzen">Reflektion ToDo überprüfen und ergänzen</h2>
+<h2 id="reflektion">Reflektion</h2>
 <h4 id="was-ist-gut-geganen">Was ist gut geganen:</h4>
 <p>Die Entscheidung dass es ein Discord Bot werden sollte, war einfach zu treffen. Da Mario ein Discord Server hat und diesen mit den Bot Administrieren möchte. Die einarbeitung in das Discord Framework discord4j war zudem auch einfach, nachdem wir entdeckt haben wie wir den Code inspecten können.</p>
 <h4 id="wo-haben-wir-noch-verbessung-potenzial">Wo haben wir noch verbessung potenzial:</h4>
@@ -697,7 +716,9 @@ Der Core Ordner dient als Abstraction damit alle Reactions/Commands einen gleich
 Bei der Java programmierung war es für uns beide neuland. Deswegen hatten wir am anfang noch mühe sachen umsetzen, diese ist aber in den Wochen immer besser geworden da wir vertrauter mit der Sprache und dem Framework geworden sind.
 Wir hatten Probleme bei der Erstellung von der fat jar file.</p>
 <h4 id="aussicht">Aussicht:</h4>
-<p>Wir hab beschlossen dass dieses Projekt eine grundlage sein soll für eine Discord Bot Infrastruktur. Von Code her sind wir sehr flexible und können schnell neue Reactions oder Commands erstellen da wir das Framework erstellt haben. Jetzt brauchen wir nur noch mehr coole Ideen, welche wir umsetzen können.</p>
+<p>Wir hab beschlossen dass dieses Projekt eine grundlage sein soll für eine Discord Bot Infrastruktur.
+Von Code her sind wir sehr flexible und können schnell neue Reactions oder Commands erstellen da wir das Framework erstellt haben.
+Jetzt brauchen wir nur noch mehr coole Ideen, welche wir umsetzen können.</p>
 <h2 id="testing">Testing</h2>
 <table>
 <thead>
@@ -805,7 +826,7 @@ Wir hatten Probleme bei der Erstellung von der fat jar file.</p>
 </table>
 <h2 id="copyright-and-license">Copyright and license</h2>
 <p>LGPL-3.0 license</p>
-<p>Copyright (c) GitHub, Inc. and the https://opencollective.com/Discord4J contributors.</p>
+<p>The https://opencollective.com/Discord4J contributors.</p>
 
 </body>
 </html>

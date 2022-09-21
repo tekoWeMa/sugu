@@ -15,11 +15,11 @@
     <a href="https://reponame/issues/new?template=feature.md&labels=feature">Request feature</a>
   </p>
 
-# ToDo Management Summary
 
-# Dokumentation
-
+# Inhaltsverzeichnis
+- [Management Summary](#management-summary)
 - [Einleitung](#einleitung)
+- [Dokumentation](#dokumentation)
 - [Aufgabenstellung](#aufgabenstellung)
 - [Idee](#idee)
 - [Projektziele](#projektziele)
@@ -30,11 +30,31 @@
 - [Technische Doku](#technische-doku)
 - [Testing](#testing)
 
+# Management Summary
+
 ## Einleitung
 
-Im Modul Projektmanagement haben wir die Aufgabe, ein Projekt zu alsolvieren.
-In diesem Dokument wir die Aufgabe erklärt sowie unsere Idee und die zu verwendeten Techologien erläutert. Ausserdem werden die Rahmenbedingungen festgehalten.
+Im Modul Projektmanagement haben wir die Aufgabe, ein Projekt zu absolvieren.
+In diesem Dokument wir die Aufgabe erklärt sowie unsere Idee und die zu verwendeten Techologien erläutert. 
+Ausserdem werden die Rahmenbedingungen festgehalten.
 
+## Hintergrund
+
+Ein grosser Discord-server ist mit grossem Verwaltungsaufwand verbunden.
+Mit einem Discord bot wollen wir Aufgaben automatisieren und den Zeitaufwand verkleinern.
+
+## Funktion
+
+Suguha Kirigaya ist ein Discord Bot. Der Bot kann mit verschiedenen Befehlen Interagieren und automatisiert Rollen verteilen. 
+Als eine erweiterbare Infrastruktur können Funktionen einfach hinzugefügt und erweitert werden.
+
+## Reflexion
+
+Die Projektarbeit bietet eine gute, erweiterbare Grundstruktur. Diese ermöglicht uns, den Bot einfach und gezielt zu erweitern.
+Der Arbeitsaufwand des Servers wurde spürbar verkleinert.
+Durch dieses Projekt konnten wir unser Wissen über Java erweitern.
+
+# Dokumentation
 ## Aufgabenstellung
 
 Unsere Aufgabe ist es, eine Projektarbeit in der Programmiersprache JAVA zu machen.
@@ -60,7 +80,7 @@ Mit diesem Projekt sollen folgende Ziele erreicht werden:
 
 | Schadensausmass |                                                                                                 |        |      |
 | :-------------- | :---------------------------------------------------------------------------------------------- | -----: | ---: |
-| Hoch            | -Discord stellt keine Dienste<br />mehr bereit <br />-Java wird nicht weiter<br /> unterstützt |        |      |
+| Hoch            | -Discord stellt keine Dienste<br />mehr bereit <br />-Java wird nicht weiter<br /> unterstützt  |        |      |
 | Mittel          |                                                                                                 |        |      |
 | Niedrig         |                                                                                                 |        |      |
 |                 | Niedrig                                                                                         | Mittel | Hoch |
@@ -76,7 +96,7 @@ Mit diesem Projekt sollen folgende Ziele erreicht werden:
 | Projektbeginn                | 29.04.2022          |                |
 | Projektantrag Abgabe         | 07.05.2022          | 07.05.2022     |
 | Infrastruktur bereitgestellt | 27.05.2022          | 30.07.2022     |
-| Abgabe Projektarbeit         | 17.09.2022          | 17.09.2022     |
+| Abgabe Projektarbeit         | 17.09.2022          | 16.09.2022     |
 | Projektabschluss             | 02.09.2022          |                |
 
 ## Termine
@@ -242,7 +262,7 @@ Systemübersicht:
 - [Discord API](#discord-API)
 - [Raspberry PI / Server](#raspberry-pi-server)
 - [Docker](#docker)
-- [Applikation, Dependencies](#applikation)
+- [Applikation](#applikation)
 - [Reflektion](#reflektion)
 
 ## Discord API
@@ -362,7 +382,7 @@ Dient zur Registrierung von Events auf der Server Seite.
 Anpassungen sind einfach zu erstellen, da man diese als Command oder als Reaction einfach hinzufügen kann und keinen bestehenden Code anpassen muss.
 Der Core Ordner dient als Abstraction damit alle Reactions/Commands einen gleichen nenner haben ausserhalb des Objektes.
 
-## Reflektion ToDo überprüfen und ergänzen
+## Reflektion
 
 #### Was ist gut geganen:
 
@@ -376,7 +396,9 @@ Wir hatten Probleme bei der Erstellung von der fat jar file.
 
 #### Aussicht:
 
-Wir hab beschlossen dass dieses Projekt eine grundlage sein soll für eine Discord Bot Infrastruktur. Von Code her sind wir sehr flexible und können schnell neue Reactions oder Commands erstellen da wir das Framework erstellt haben. Jetzt brauchen wir nur noch mehr coole Ideen, welche wir umsetzen können.
+Wir hab beschlossen dass dieses Projekt eine grundlage sein soll für eine Discord Bot Infrastruktur. 
+Von Code her sind wir sehr flexible und können schnell neue Reactions oder Commands erstellen da wir das Framework erstellt haben. 
+Jetzt brauchen wir nur noch mehr coole Ideen, welche wir umsetzen können.
 
 ## Testing
 
@@ -417,4 +439,4 @@ Wir hab beschlossen dass dieses Projekt eine grundlage sein soll für eine Disco
 
 LGPL-3.0 license
 
-Copyright (c) GitHub, Inc. and the https://opencollective.com/Discord4J contributors.
+The https://opencollective.com/Discord4J contributors.
