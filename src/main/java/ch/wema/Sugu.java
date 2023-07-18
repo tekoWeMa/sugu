@@ -17,7 +17,7 @@ public class Sugu {
     private static final Logger LOGGER = LoggerFactory.getLogger(Sugu.class);
 
     public static void main(final String[] args) {
-        final var token = System.getenv("DISCORD_CLIENT_TOKEN");
+        final var token = System.getenv("DISCORD_CLIENT_TOKEN"); // Here comes the Token, remember to not commit this to the Repo.
         final GatewayDiscordClient client = DiscordClientBuilder.create(token).build().login().block();
 
         List<String> commands = List.of("ping.json");
