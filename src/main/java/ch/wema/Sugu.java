@@ -2,6 +2,7 @@ package ch.wema;
 
 import ch.wema.event.listeners.ChatInputInteractionEventListener;
 import ch.wema.event.listeners.MessageCreateEventListener;
+import ch.wema.event.listeners.UserStatusLoggerEventListener;
 import ch.wema.event.listeners.VoiceStateUpdateEventListener;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
@@ -26,6 +27,11 @@ public class Sugu {
         } catch (Exception e) {
             LOGGER.error("Error trying to register global slash commands", e);
         }
+
+        // Create EventListener instance and start listening
+        UserStatusLoggerEventListener eventListener = new UserStatusLoggerEventListener(client);
+        eventListener.startListening();
+
 
         client.on(ChatInputInteractionEvent.class, ChatInputInteractionEventListener::handle)
                 .then(client.onDisconnect())
