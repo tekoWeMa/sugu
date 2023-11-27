@@ -1,7 +1,6 @@
 package ch.wema.reactions;
 
 import ch.wema.core.reaction.Reaction;
-import discord4j.core.event.domain.command.ApplicationCommandCreateEvent;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Message;
 import reactor.core.publisher.Mono;
