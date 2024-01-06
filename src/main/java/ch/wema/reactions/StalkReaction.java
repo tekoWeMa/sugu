@@ -27,6 +27,12 @@ public class StalkReaction implements Reaction<PresenceUpdateEvent> {
                         if (!event.getCurrent().getActivities().isEmpty()) {
                             content.append("\nActivities:");
                             for (Activity activity : event.getCurrent().getActivities()) {
+                                /* 
+                                If 
+                                Name: Custom Status or
+                                Type: CUSTOM
+                                We can ignore the activity only user status information
+                                */
                                 content.append("\n- Name: ").append(activity.getName())
                                         .append("\n- Type: ").append(activity.getType().name());
 
