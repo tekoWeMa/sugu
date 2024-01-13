@@ -6,4 +6,7 @@ services:
       context: .
     environment:
       - DISCORD_CLIENT_TOKEN
+      - DB_HOST
+      - DB_USERNAME
+      - DB_PASSWORD
     restart: always
