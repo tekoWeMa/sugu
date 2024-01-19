@@ -2,17 +2,22 @@ package ch.wema.reactions;
 
 import ch.wema.SQL.ReadFromSQL;
 import ch.wema.SQL.WriteToSQL;
+import ch.wema.Sugu;
 import ch.wema.core.reaction.Reaction;
 import discord4j.common.util.Snowflake;
 import discord4j.core.event.domain.PresenceUpdateEvent;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.object.presence.Activity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Mono;
 import java.sql.*;
 
 import java.sql.Connection;
 
 public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Sugu.class);
+
     @Override
     public Mono<Void> handle(PresenceUpdateEvent event) {
         //check if this is even getting used
@@ -225,7 +230,7 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
 
         String dbName = "sugu";
         int dbPort = 3306; // Default MariaDB port
-
+        LOGGER.debug("JDB Connection String" + String.format("jdbc:mariadb://%s:%d/%s", dbHost, dbPort, dbName));
         // Construct the connection URL
         String connectionUrl = String.format("jdbc:mariadb://%s:%d/%s", dbHost, dbPort, dbName);
 
