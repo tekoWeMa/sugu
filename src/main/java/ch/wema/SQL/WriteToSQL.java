@@ -6,8 +6,8 @@ public class WriteToSQL {
 
     private Connection connection;
 
-    public WriteToSQL(Connection connection) {
-        this.connection = connection;
+    public WriteToSQL(Connection DBConnection) {
+        this.connection = DBConnection;
     }
 
     public int insertUser(String username, long userId) throws SQLException {
@@ -149,6 +149,13 @@ public class WriteToSQL {
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setTimestamp(1, endtime);
             statement.setInt(2, autoActivityId);
+            statement.executeUpdate();
+        }
+    }
+
+    public void deleteEmptyEndDates() throws SQLException {
+        String sql = "DELETE FROM Activity WHERE endtime IS NULL;";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.executeUpdate();
         }
     }

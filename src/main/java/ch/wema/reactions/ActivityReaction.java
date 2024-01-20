@@ -82,7 +82,7 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
                                 if (activity.getName().equals("Custom Status") || activity.getType().name().equals("CUSTOM")){
                                     if (event.getCurrent().getActivities().size() == 1) {
                                         try {
-                                            updatePrevActivity(readFromSQL, writeToSQL, autouserid, currenttime);
+                                            updatePrevActivity(readFromSQL, writeToSQL, autouserid, currenttime, activities);
                                         } catch (SQLException ex) {
                                             return Mono.error(new RuntimeException(ex));
                                         }

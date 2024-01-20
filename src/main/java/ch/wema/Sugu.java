@@ -1,6 +1,9 @@
 package ch.wema;
 
+import ch.wema.SQL.DBConnection;
+import ch.wema.SQL.WriteToSQL;
 import ch.wema.event.listeners.*;
+import ch.wema.reactions.ActivityReaction;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.PresenceUpdateEvent;
