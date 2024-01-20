@@ -1,6 +1,7 @@
 package ch.wema.SQL;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class WriteToSQL {
 
@@ -144,12 +145,14 @@ public class WriteToSQL {
         }
     }
 
-    public void updateEndActivity(int autoActivityId, Timestamp endtime) throws SQLException {
+    public void updateEndActivity(ArrayList<Integer> autoActivityId, Timestamp endtime) throws SQLException {
         String sql = "UPDATE Activity SET endtime = ? WHERE auto_activity_id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setTimestamp(1, endtime);
-            statement.setInt(2, autoActivityId);
-            statement.executeUpdate();
+        for (int activityId : autoActivityId) {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setTimestamp(1, endtime);
+                statement.setInt(2, activityId);
+                statement.executeUpdate();
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 package ch.wema.reactions;
 
+import ch.wema.SQL.DBConnection;
 import ch.wema.SQL.ReadFromSQL;
 import ch.wema.SQL.WriteToSQL;
 import ch.wema.Sugu;
@@ -14,6 +15,7 @@ import reactor.core.publisher.Mono;
 import java.sql.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
     private static final Logger LOGGER = LoggerFactory.getLogger(Sugu.class);
@@ -34,7 +36,8 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
                         StringBuilder content = new StringBuilder("The Status of the user " + u.getUsername() + " (" + u.getId().asString() + ") changed to " + status + ".");
 
                         //Make Connection to DDB
-                        Connection conn = SQLDBConnection();
+                        DBConnection dbConnection = new DBConnection();
+                        Connection conn = dbConnection.SQLDBConnection();
                         ReadFromSQL readFromSQL = new ReadFromSQL(conn);
                         WriteToSQL writeToSQL = new WriteToSQL(conn);
                         //Get Current Time
@@ -55,19 +58,18 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
                         }
 
                         //Variables for Statustype
-                        String statustype = status;
-                        //Look up, if Status exists in DB
-                        Integer autostatusid = readFromSQL.searchStatus(statustype);
+                                        //Look up, if Status exists in DB
+                        Integer autostatusid = readFromSQL.searchStatus(status);
                         //Insert Status, if Status does not exist.
                         if (autostatusid == null) {
                             try {
-                                autostatusid = writeToSQL.insertStatus(statustype);
+                                autostatusid = writeToSQL.insertStatus(status);
                             } catch (SQLException ex) {
                                 return Mono.error(new RuntimeException(ex));
                             }
                         }
 
-
+                        ArrayList<Integer> activities = new ArrayList<>();
                         // If the user has any activities, append them to the log message
                         if (!event.getCurrent().getActivities().isEmpty()) {
                             content.append("\nActivities:");
@@ -163,15 +165,10 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
                                     }
                                 }
 
-                                try {
-                                    updatePrevActivity(readFromSQL, writeToSQL, autouserid, currenttime);
-                                } catch (SQLException ex) {
-                                    return Mono.error(new RuntimeException(ex));
-                                }
 
                                 //write everything to SQL
                                 try {
-                                    writeToSQL.insertActivity(autoappid, autouserid, autostatusid, autoappstateid, autotypeid, currenttime);
+                                    activities.add(writeToSQL.insertActivity(autoappid, autouserid, autostatusid, autoappstateid, autotypeid, currenttime));
                                 } catch (SQLException ex) {
                                     return Mono.error(new RuntimeException(ex));
                                 }
@@ -196,50 +193,43 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
                                 }
                             }
                         } else {
+                            /*
                             try {
-                                updatePrevActivity(readFromSQL, writeToSQL, autouserid, currenttime);
+                                updatePrevActivity(readFromSQL, writeToSQL, autouserid, currenttime, activities);
                             } catch (SQLException ex) {
                                 return Mono.error(new RuntimeException(ex));
-                            }
+                            }*/
                             try {
                                 writeToSQL.insertActivitySlim(autouserid, autostatusid, currenttime);
                             } catch (SQLException ex) {
                                 return Mono.error(new RuntimeException(ex));
                             }
                         }
+                                        try {
+                                            updatePrevActivity(readFromSQL, writeToSQL, autouserid, currenttime, activities);
+                                        } catch (SQLException ex) {
+                                            return Mono.error(new RuntimeException(ex));
+                                        }
+                                        try {
+                                            assert conn != null;
+                                            conn.close();
+                                        } catch (SQLException ex) {
+                                            return Mono.error(new RuntimeException(ex));
+                                        }
 
-                        return ((MessageChannel) client.getChannelById(Snowflake.of("1008364168753193030")).block()).createMessage(content.toString());
+
+                                        return ((MessageChannel) client.getChannelById(Snowflake.of("1008364168753193030")).block()).createMessage(content.toString());
                     }).then();
 
                 });
     }
 
-    private void updatePrevActivity(ReadFromSQL readFromSQL, WriteToSQL writeToSQL, int autouserid, Timestamp currenttime) throws SQLException{
+    private void updatePrevActivity(ReadFromSQL readFromSQL, WriteToSQL writeToSQL, int autouserid, Timestamp currenttime, ArrayList<Integer> activities) throws SQLException{
         // if new activity of user XY, then insert current time to endtime
-        Integer prev_activity = readFromSQL.searchNewestActivityByUser(autouserid);
+        ArrayList<Integer> prev_activity = readFromSQL.searchNewestActivityByUser(autouserid, activities);
         //Timestamp currenttime = Timestamp.from(activity.getStart().get());
         if (!(prev_activity == null)){
             writeToSQL.updateEndActivity(prev_activity, currenttime);
-        }
-    }
-
-    private Connection SQLDBConnection() {
-        final var dbHost = System.getenv("DB_HOST"); // DB Host, e.g., "localhost" or an IP address
-        final var dbUsername = System.getenv("DB_USERNAME"); // DB Username
-        final var dbPassword = System.getenv("DB_PASSWORD"); // DB Password
-
-        String dbName = "sugu";
-        int dbPort = 3306; // Default MariaDB port
-        LOGGER.debug("JDB Connection String" + String.format("jdbc:mariadb://%s:%d/%s", dbHost, dbPort, dbName));
-        // Construct the connection URL
-        String connectionUrl = String.format("jdbc:mariadb://%s:%d/%s", dbHost, dbPort, dbName);
-
-        try {
-            // Establish and return the database connection
-            return DriverManager.getConnection(connectionUrl, dbUsername, dbPassword);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
         }
     }
 }

@@ -14,6 +14,8 @@ import discord4j.gateway.intent.IntentSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Sugu {
@@ -41,7 +43,14 @@ public class Sugu {
         //ORIG
         //UserStatusLoggerEventListener eventListener = new UserStatusLoggerEventListener(client);
         //eventListener.startListening();
-
+        DBConnection dbConnection = new DBConnection();
+        Connection conn = dbConnection.SQLDBConnection();
+        WriteToSQL writeToSQL = new WriteToSQL(conn);
+        try {
+            writeToSQL.deleteEmptyEndDates();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         client.on(ChatInputInteractionEvent.class, ChatInputInteractionEventListener::handle)
                 .then(client.onDisconnect())

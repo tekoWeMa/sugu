@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class ReadFromSQL {
 
@@ -103,15 +105,25 @@ public class ReadFromSQL {
         return null;
     }
 
-    public Integer searchNewestActivityByUser(int autoUserId) {
-        String sql = "SELECT auto_activity_id FROM Activity WHERE auto_user_id = ? ORDER BY starttime DESC LIMIT 1";
+    public ArrayList<Integer> searchNewestActivityByUser(int autoUserId, ArrayList<Integer> list) {
+        String listAsString = String.join(",", Collections.nCopies(list.size(), "?"));
+        if(list.isEmpty()){
+            listAsString = "\"\"";
+        }
+        String sql = String.format("SELECT auto_activity_id FROM Activity WHERE auto_user_id = ? AND auto_activity_id NOT IN (%s) AND endtime IS null ORDER BY starttime DESC", listAsString);
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, autoUserId);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                return rs.getInt("auto_activity_id");
+            //statement.setString(2, listAsString);
+            int index = 2;
+            for (Integer id : list) {
+                statement.setInt(index++, id);
             }
-            return null;
+            ResultSet rs = statement.executeQuery();
+            ArrayList<Integer> activity_ids = new ArrayList<>();
+            while (rs.next()) {
+                activity_ids.add(rs.getInt("auto_activity_id"));
+            }
+            return activity_ids;
         } catch (SQLException e) {
             e.printStackTrace();
         }
