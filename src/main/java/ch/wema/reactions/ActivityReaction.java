@@ -200,7 +200,7 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
                                 return Mono.error(new RuntimeException(ex));
                             }*/
                             try {
-                                writeToSQL.insertActivitySlim(autouserid, autostatusid, currenttime);
+                                activities.add(writeToSQL.insertActivitySlim(autouserid, autostatusid, currenttime));
                             } catch (SQLException ex) {
                                 return Mono.error(new RuntimeException(ex));
                             }
