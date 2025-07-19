@@ -88,9 +88,10 @@ services:
   bot:
     build: .
     environment:
-      - DB_HOST=mariadb
-      - DB_USER=sugu
-      - DB_PASS=yourpassword
+      - DISCORD_CLIENT_TOKEN
+      - DB_HOST 
+      - DB_USERNAME
+      - DB_PASSWORD
     depends_on:
       - mariadb
     restart: unless-stopped
@@ -98,8 +99,8 @@ services:
   mariadb:
     image: mariadb
     environment:
-      - MYSQL_ROOT_PASSWORD=rootpass
-      - MYSQL_DATABASE=sugu
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE
     volumes:
       - ./db-data:/var/lib/mysql
 
