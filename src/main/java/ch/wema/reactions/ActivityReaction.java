@@ -33,7 +33,11 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
                                         String status = event.getCurrent().getStatus().toString();
 
                         // Build the base log message
-                        StringBuilder content = new StringBuilder("The Status of the user " + u.getUsername() + " (" + u.getId().asString() + ") changed to " + status + ".");
+                        StringBuilder content = new StringBuilder();
+                        content.append("The Status of the user ")
+                               .append(u.getUsername())
+                               .append(" (").append(u.getId().asString()).append(") ")
+                               .append("changed to ").append(status).append(".");
 
                         //Make Connection to DDB
                         DBConnection dbConnection = new DBConnection();
