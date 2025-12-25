@@ -7,6 +7,9 @@ import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.object.presence.Activity;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+import java.util.Optional;
+
 public class StalkReaction implements Reaction<PresenceUpdateEvent> {
     @Override
     public Mono<Void> handle(PresenceUpdateEvent event) {
@@ -28,31 +31,18 @@ public class StalkReaction implements Reaction<PresenceUpdateEvent> {
                                .append("changed to ").append(status).append(".");
 
                         // If the user has any activities, append them to the log message
-                        if (!event.getCurrent().getActivities().isEmpty()) {
+                        List<Activity> activities = event.getCurrent().getActivities();
+                        if (!activities.isEmpty()) {
                             content.append("\nActivities:");
-                            for (Activity activity : event.getCurrent().getActivities()) {
+                            for (Activity activity : activities) {
                                 content.append("\n- Name: ").append(activity.getName())
-                                        .append("\n- Type: ").append(activity.getType().name());
+                                       .append("\n  Type: ").append(activity.getType().name());
 
-                                if (activity.getDetails().isPresent()) {
-                                    content.append("\n- Details: ").append(activity.getDetails().get());
-                                }
-
-                                if (activity.getState().isPresent()) {
-                                    content.append("\n- State: ").append(activity.getState().get());
-                                }
-
-                                if (activity.getStart().isPresent()) {
-                                    content.append("\n- Start: ").append(activity.getStart().get());
-                                }
-
-                                if (activity.getEnd().isPresent()) {
-                                    content.append("\n- End: ").append(activity.getEnd().get());
-                                }
-
-                                if (activity.getApplicationId().isPresent()) {
-                                    content.append("\n- Application ID: ").append(activity.getApplicationId().get().asString());
-                                }
+                                appendIfPresent(content, "Details", activity.getDetails());
+                                appendIfPresent(content, "State", activity.getState());
+                                appendIfPresent(content, "Start", activity.getStart());
+                                appendIfPresent(content, "End", activity.getEnd());
+                                appendIfPresent(content, "Application ID", activity.getApplicationId().map(Snowflake::asString));
                             }
                         }
 
@@ -60,5 +50,9 @@ public class StalkReaction implements Reaction<PresenceUpdateEvent> {
                     }).then();
 
                 });
+    }
+
+    private <T> void appendIfPresent(StringBuilder sb, String label, Optional<T> value) {
+        value.ifPresent(v -> sb.append("\n  ").append(label).append(": ").append(v));
     }
 }
