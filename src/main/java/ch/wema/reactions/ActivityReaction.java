@@ -16,6 +16,9 @@ import java.sql.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
     private static final Logger LOGGER = LoggerFactory.getLogger(Sugu.class);
@@ -73,11 +76,12 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
                             }
                         }
 
-                        ArrayList<Integer> activities = new ArrayList<>();
+                        ArrayList<Integer> activityIds = new ArrayList<>();
                         // If the user has any activities, append them to the log message
-                        if (!event.getCurrent().getActivities().isEmpty()) {
+                        List<Activity> activities = event.getCurrent().getActivities();
+                        if (!activities.isEmpty()) {
                             content.append("\nActivities:");
-                            for (Activity activity : event.getCurrent().getActivities()) {
+                            for (Activity activity : activities) {
                                 /* 
                                 If 
                                 Name: Custom Status or
@@ -86,9 +90,9 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
                                 */
 
                                 if (activity.getName().equals("Custom Status") || activity.getType().name().equals("CUSTOM")){
-                                    if (event.getCurrent().getActivities().size() == 1) {
+                                    if (activities.size() == 1) {
                                         try {
-                                            updatePrevActivity(readFromSQL, writeToSQL, autouserid, currenttime, activities);
+                                            updatePrevActivity(readFromSQL, writeToSQL, autouserid, currenttime, activityIds);
                                         } catch (SQLException ex) {
                                             return Mono.error(new RuntimeException(ex));
                                         }
@@ -172,45 +176,34 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
 
                                 //write everything to SQL
                                 try {
-                                    activities.add(writeToSQL.insertActivity(autoappid, autouserid, autostatusid, autoappstateid, autotypeid, currenttime));
+                                    activityIds.add(writeToSQL.insertActivity(autoappid, autouserid, autostatusid, autoappstateid, autotypeid, currenttime));
                                 } catch (SQLException ex) {
                                     return Mono.error(new RuntimeException(ex));
                                 }
 
                                 content.append("\n- Name: ").append(activity.getName())
-                                        .append("\n- Type: ").append(activity.getType().name());
+                                       .append("\n  Type: ").append(activity.getType().name());
 
-                                if (activity.getDetails().isPresent()) {
-                                    content.append("\n- Details: ").append(activity.getDetails().get());
-                                }
-
-                                if (activity.getState().isPresent()) {
-                                    content.append("\n- State: ").append(activity.getState().get());
-                                }
-
-                                if (activity.getStart().isPresent()) {
-                                    content.append("\n- Start: ").append(activity.getStart().get());
-                                }
-
-                                if (activity.getApplicationId().isPresent()) {
-                                    content.append("\n- Application ID: ").append(activity.getApplicationId().get().asString());
-                                }
+                                appendIfPresent(content, "Details", activity.getDetails());
+                                appendIfPresent(content, "State", activity.getState());
+                                appendIfPresent(content, "Start", activity.getStart());
+                                appendIfPresent(content, "Application ID", activity.getApplicationId().map(Snowflake::asString));
                             }
                         } else {
                             /*
                             try {
-                                updatePrevActivity(readFromSQL, writeToSQL, autouserid, currenttime, activities);
+                                updatePrevActivity(readFromSQL, writeToSQL, autouserid, currenttime, activityIds);
                             } catch (SQLException ex) {
                                 return Mono.error(new RuntimeException(ex));
                             }*/
                             try {
-                                activities.add(writeToSQL.insertActivitySlim(autouserid, autostatusid, currenttime));
+                                activityIds.add(writeToSQL.insertActivitySlim(autouserid, autostatusid, currenttime));
                             } catch (SQLException ex) {
                                 return Mono.error(new RuntimeException(ex));
                             }
                         }
                                         try {
-                                            updatePrevActivity(readFromSQL, writeToSQL, autouserid, currenttime, activities);
+                                            updatePrevActivity(readFromSQL, writeToSQL, autouserid, currenttime, activityIds);
                                         } catch (SQLException ex) {
                                             return Mono.error(new RuntimeException(ex));
                                         }
@@ -222,18 +215,22 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
                                         }
 
 
-                                        return ((MessageChannel) client.getChannelById(Snowflake.of("1008364168753193030")).block()).createMessage(content.toString());
+                                        return ((MessageChannel) Objects.requireNonNull(client.getChannelById(Snowflake.of("1008364168753193030")).block())).createMessage(content.toString());
                     }).then();
 
                 });
     }
 
-    private void updatePrevActivity(ReadFromSQL readFromSQL, WriteToSQL writeToSQL, int autouserid, Timestamp currenttime, ArrayList<Integer> activities) throws SQLException{
+    private void updatePrevActivity(ReadFromSQL readFromSQL, WriteToSQL writeToSQL, int autouserid, Timestamp currenttime, ArrayList<Integer> activityIds) throws SQLException{
         // if new activity of user XY, then insert current time to endtime
-        ArrayList<Integer> prev_activity = readFromSQL.searchNewestActivityByUser(autouserid, activities);
+        ArrayList<Integer> prev_activity = readFromSQL.searchNewestActivityByUser(autouserid, activityIds);
         //Timestamp currenttime = Timestamp.from(activity.getStart().get());
         if (!(prev_activity == null)){
             writeToSQL.updateEndActivity(prev_activity, currenttime);
         }
+    }
+
+    private <T> void appendIfPresent(StringBuilder sb, String label, Optional<T> value) {
+        value.ifPresent(v -> sb.append("\n  ").append(label).append(": ").append(v));
     }
 }
