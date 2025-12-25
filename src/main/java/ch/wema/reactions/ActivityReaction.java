@@ -1,6 +1,6 @@
 package ch.wema.reactions;
 
-import ch.wema.SQL.DBConnection;
+import ch.wema.SQL.DatabaseService;
 import ch.wema.SQL.ReadFromSQL;
 import ch.wema.SQL.WriteToSQL;
 import ch.wema.Sugu;
@@ -42,9 +42,8 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
                                .append(" (").append(u.getId().asString()).append(") ")
                                .append("changed to ").append(status).append(".");
 
-                        //Make Connection to DDB
-                        DBConnection dbConnection = new DBConnection();
-                        Connection conn = dbConnection.SQLDBConnection();
+                        //Make Connection to DB
+                        try (Connection conn = DatabaseService.getConnection()) {
                         ReadFromSQL readFromSQL = new ReadFromSQL(conn);
                         WriteToSQL writeToSQL = new WriteToSQL(conn);
                         //Get Current Time
@@ -138,7 +137,7 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
 
 
                                 //Variables for AppState
-                                String app_state = null;;
+                                String app_state = null;
                                 if (activity.getState().isPresent()) {
                                      app_state = activity.getState().get();
                                 }
@@ -207,13 +206,9 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
                                         } catch (SQLException ex) {
                                             return Mono.error(new RuntimeException(ex));
                                         }
-                                        try {
-                                            assert conn != null;
-                                            conn.close();
-                                        } catch (SQLException ex) {
-                                            return Mono.error(new RuntimeException(ex));
-                                        }
-
+                        } catch (SQLException ex) {
+                            return Mono.error(new RuntimeException(ex));
+                        }
 
                                         return ((MessageChannel) Objects.requireNonNull(client.getChannelById(Snowflake.of("1008364168753193030")).block())).createMessage(content.toString());
                     }).then();
