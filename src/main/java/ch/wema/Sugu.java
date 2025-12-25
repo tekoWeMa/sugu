@@ -1,6 +1,6 @@
 package ch.wema;
 
-import ch.wema.SQL.DBConnection;
+import ch.wema.SQL.DatabaseService;
 import ch.wema.SQL.WriteToSQL;
 import ch.wema.event.listeners.*;
 import ch.wema.reactions.ActivityReaction;
@@ -43,14 +43,14 @@ public class Sugu {
         //ORIG
         //UserStatusLoggerEventListener eventListener = new UserStatusLoggerEventListener(client);
         //eventListener.startListening();
-        DBConnection dbConnection = new DBConnection();
-        Connection conn = dbConnection.SQLDBConnection();
-        WriteToSQL writeToSQL = new WriteToSQL(conn);
-        try {
+        try (Connection conn = DatabaseService.getConnection()) {
+            WriteToSQL writeToSQL = new WriteToSQL(conn);
             writeToSQL.deleteEmptyEndDates();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        Runtime.getRuntime().addShutdownHook(new Thread(DatabaseService::shutdown));
 
         client.on(ChatInputInteractionEvent.class, ChatInputInteractionEventListener::handle)
                 .then(client.onDisconnect())
