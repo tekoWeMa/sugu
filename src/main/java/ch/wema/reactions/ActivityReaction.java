@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
 public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
     private static final Logger LOGGER = LoggerFactory.getLogger(Sugu.class);
 
@@ -173,9 +172,14 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
                                 }
 
 
+                                //Variables for Party
+                                String partyId = activity.getPartyId().orElse(null);
+                                Integer partySize = activity.getCurrentPartySize().isPresent() ? (int) activity.getCurrentPartySize().getAsLong() : null;
+                                Integer partyMax = activity.getMaxPartySize().isPresent() ? (int) activity.getMaxPartySize().getAsLong() : null;
+
                                 //write everything to SQL
                                 try {
-                                    activityIds.add(writeToSQL.insertActivity(autoappid, autouserid, autostatusid, autoappstateid, autotypeid, currenttime));
+                                    activityIds.add(writeToSQL.insertActivity(autoappid, autouserid, autostatusid, autoappstateid, autotypeid, currenttime, partyId, partySize, partyMax));
                                 } catch (SQLException ex) {
                                     return Mono.error(new RuntimeException(ex));
                                 }
@@ -186,7 +190,15 @@ public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
                                 appendIfPresent(content, "Details", activity.getDetails());
                                 appendIfPresent(content, "State", activity.getState());
                                 appendIfPresent(content, "Start", activity.getStart());
+                                appendIfPresent(content, "End", activity.getEnd());
                                 appendIfPresent(content, "Application ID", activity.getApplicationId().map(Snowflake::asString));
+                                appendIfPresent(content, "Party ID", activity.getPartyId());
+                                appendIfPresent(content, "Party Size", activity.getCurrentPartySize().isPresent() ? Optional.of(activity.getCurrentPartySize().getAsLong() + "/" + activity.getMaxPartySize().orElse(0)) : Optional.empty());
+                                appendIfPresent(content, "Streaming URL", activity.getStreamingUrl());
+                                appendIfPresent(content, "Instance", activity.isInstance() ? Optional.of(true) : Optional.empty());
+                                appendIfPresent(content, "Join Secret", activity.getJoinSecret());
+                                appendIfPresent(content, "Spectate Secret", activity.getSpectateSecret());
+                                appendIfPresent(content, "Match Secret", activity.getMatchSecret());
                             }
                         } else {
                             /*

@@ -108,8 +108,8 @@ public class WriteToSQL {
         }
     }
 
-    public int insertActivity(int autoAppId, int autoUserId, int autoStatusId, int autoAppStateId, int autoTypeId, Timestamp starttime) throws SQLException {
-        String sql = "INSERT INTO Activity (auto_app_id, auto_user_id, auto_status_id, auto_app_state_id, auto_type_id, starttime) VALUES (?, ?, ?, ?, ?, ?)";
+    public int insertActivity(int autoAppId, int autoUserId, int autoStatusId, int autoAppStateId, int autoTypeId, Timestamp starttime, String partyId, Integer partySize, Integer partyMax) throws SQLException {
+        String sql = "INSERT INTO Activity (auto_app_id, auto_user_id, auto_status_id, auto_app_state_id, auto_type_id, starttime, party_id, party_size, party_max) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, autoAppId);
             statement.setInt(2, autoUserId);
@@ -117,10 +117,25 @@ public class WriteToSQL {
             statement.setInt(4, autoAppStateId);
             statement.setInt(5, autoTypeId);
             statement.setTimestamp(6, starttime);
+            if (partyId != null) {
+                statement.setString(7, partyId);
+            } else {
+                statement.setNull(7, Types.VARCHAR);
+            }
+            if (partySize != null) {
+                statement.setInt(8, partySize);
+            } else {
+                statement.setNull(8, Types.INTEGER);
+            }
+            if (partyMax != null) {
+                statement.setInt(9, partyMax);
+            } else {
+                statement.setNull(9, Types.INTEGER);
+            }
             statement.executeUpdate();
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
-                    return generatedKeys.getInt(1); // Assuming the auto-generated key is an integer.
+                    return generatedKeys.getInt(1);
                 } else {
                     throw new SQLException("Creating Activity failed, no ID obtained.");
                 }
