@@ -27,4 +27,6 @@ jobs:
       uses: gradle/actions/setup-gradle@v4
 
     - name: Build with Gradle
-      run: ./gradlew customFatJar
+      run: |
+        chmod +x ./gradlew
+        ./gradlew customFatJar
