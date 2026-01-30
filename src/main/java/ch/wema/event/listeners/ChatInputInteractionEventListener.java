@@ -1,6 +1,8 @@
 package ch.wema.event.listeners;
 
+import ch.wema.commands.InviteCommand;
 import ch.wema.commands.PingCommand;
+import ch.wema.commands.ServersCommand;
 import ch.wema.commands.StatusCommand;
 import ch.wema.core.command.Command;
 import ch.wema.presence.BotPresenceManager;
@@ -19,6 +21,8 @@ public class ChatInputInteractionEventListener {
         commands.clear();
         commands.add(new PingCommand());
         commands.add(new StatusCommand(presenceManager));
+        commands.add(new ServersCommand());
+        commands.add(new InviteCommand());
     }
 
     public static Mono<Void> handle(ChatInputInteractionEvent event) {

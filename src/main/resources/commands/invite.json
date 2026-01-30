@@ -1,0 +1,20 @@
+{
+  "name": "invite",
+  "description": "Create an invite link for a server the bot is in",
+  "default_member_permissions": "0",
+  "options": [
+    {
+      "name": "create",
+      "description": "Create an invite for a server",
+      "type": 1,
+      "options": [
+        {
+          "name": "server_id",
+          "description": "The server ID to create an invite for",
+          "type": 3,
+          "required": true
+        }
+      ]
+    }
+  ]
+}

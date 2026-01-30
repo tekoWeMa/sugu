@@ -9,6 +9,7 @@ import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.PresenceUpdateEvent;
 import discord4j.core.event.domain.VoiceStateUpdateEvent;
+import discord4j.core.event.domain.guild.GuildCreateEvent;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.gateway.intent.IntentSet;
@@ -36,7 +37,7 @@ public class Sugu {
         presenceManager.start();
         ChatInputInteractionEventListener.initialize(presenceManager);
 
-        List<String> commands = List.of("ping.json", "status.json");
+        List<String> commands = List.of("ping.json", "status.json", "servers.json", "invite.json");
         try {
             new GlobalCommandRegistrar(client.getRestClient()).registerCommands(commands);
         } catch (Exception e) {
@@ -68,6 +69,17 @@ public class Sugu {
                 .subscribe();
         client.on(VoiceStateUpdateEvent.class, VoiceStateUpdateEventListener::handle)
                 .then(client.onDisconnect())
+                .subscribe();
+        client.on(GuildCreateEvent.class, GuildCreateEventListener::handle)
+                .then(client.onDisconnect())
+                .subscribe();
+
+        // Mark guild listener as initialized after a delay to allow initial guild loading
+        client.getGuilds().count()
+                .doOnSuccess(count -> {
+                    LOGGER.info("Bot connected to {} servers", count);
+                    GuildCreateEventListener.markInitialized();
+                })
                 .subscribe();
 
         client.onDisconnect().block();

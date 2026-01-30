@@ -1,0 +1,5 @@
+{
+  "name": "servers",
+  "description": "List all servers the bot is in",
+  "default_member_permissions": "0"
+}
