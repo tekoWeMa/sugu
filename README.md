@@ -92,6 +92,7 @@ services:
       - DB_HOST 
       - DB_USERNAME
       - DB_PASSWORD
+      - BOT_OWNER_ID
     depends_on:
       - mariadb
     restart: unless-stopped

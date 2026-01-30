@@ -3,6 +3,7 @@ package ch.wema;
 import ch.wema.SQL.DatabaseService;
 import ch.wema.SQL.WriteToSQL;
 import ch.wema.event.listeners.*;
+import ch.wema.presence.BotPresenceManager;
 import ch.wema.reactions.ActivityReaction;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
@@ -31,7 +32,11 @@ public class Sugu {
                 .login()
                 .block();
 
-        List<String> commands = List.of("ping.json");
+        BotPresenceManager presenceManager = new BotPresenceManager(client);
+        presenceManager.start();
+        ChatInputInteractionEventListener.initialize(presenceManager);
+
+        List<String> commands = List.of("ping.json", "status.json");
         try {
             new GlobalCommandRegistrar(client.getRestClient()).registerCommands(commands);
         } catch (Exception e) {
