@@ -30,6 +30,7 @@ public enum StatusPreset {
     public String getTypeName() {
         return typeName;
     }
+    XDD
 
     public ClientActivity createActivity(BotStats stats) {
         return activityFactory.apply(stats);
