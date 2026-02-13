@@ -28,7 +28,8 @@ public class BotPresenceManager {
             StatusPreset.USERS,
             StatusPreset.SERVERS,
             StatusPreset.HELP,
-            StatusPreset.LISTENING
+            StatusPreset.LISTENING,
+            StatusPreset.INVITE
     );
 
     private final GatewayDiscordClient client;

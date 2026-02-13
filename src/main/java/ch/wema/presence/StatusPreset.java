@@ -10,7 +10,8 @@ public enum StatusPreset {
     USERS("users", "Watching", stats -> ClientActivity.watching("over " + stats.users() + " users")),
     SERVERS("servers", "Playing", stats -> ClientActivity.playing("in " + stats.servers() + " servers")),
     HELP("help", "Playing", stats -> ClientActivity.playing("/help")),
-    LISTENING("listening", "Listening", stats -> ClientActivity.listening("Listening to your Spotify"));
+    LISTENING("listening", "Listening", stats -> ClientActivity.listening("Listening to your Spotify")),
+    INVITE("invite", "Playing", stats -> ClientActivity.playing("Add me to Server to Track Stats!"));
 
     private final String name;
     private final String typeName;
