@@ -19,11 +19,12 @@ public class ReadFromSQL {
         String sql = "SELECT auto_user_id FROM User WHERE user_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, userId);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                return rs.getInt("auto_user_id");
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("auto_user_id");
+                }
+                return null;
             }
-            return null;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -33,11 +34,12 @@ public class ReadFromSQL {
         String sql = "SELECT auto_app_id FROM Application WHERE app_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, appId);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                return rs.getInt("auto_app_id");
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("auto_app_id");
+                }
+                return null;
             }
-            return null;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -48,11 +50,12 @@ public class ReadFromSQL {
         String sql = "SELECT auto_app_id FROM Application WHERE name = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, appname);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                return rs.getInt("auto_app_id");
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("auto_app_id");
+                }
+                return null;
             }
-            return null;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -63,11 +66,12 @@ public class ReadFromSQL {
         String sql = "SELECT auto_status_id FROM Status WHERE type = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, type);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                return rs.getInt("auto_status_id");
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("auto_status_id");
+                }
+                return null;
             }
-            return null;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -79,11 +83,12 @@ public class ReadFromSQL {
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, state);
             statement.setString(2, details);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                return rs.getInt("auto_app_state_id");
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("auto_app_state_id");
+                }
+                return null;
             }
-            return null;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -94,11 +99,12 @@ public class ReadFromSQL {
         String sql = "SELECT auto_type_id FROM Type WHERE type = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, type);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                return rs.getInt("auto_type_id");
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("auto_type_id");
+                }
+                return null;
             }
-            return null;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -118,12 +124,13 @@ public class ReadFromSQL {
             for (Integer id : list) {
                 statement.setInt(index++, id);
             }
-            ResultSet rs = statement.executeQuery();
-            ArrayList<Integer> activity_ids = new ArrayList<>();
-            while (rs.next()) {
-                activity_ids.add(rs.getInt("auto_activity_id"));
+            try (ResultSet rs = statement.executeQuery()) {
+                ArrayList<Integer> activity_ids = new ArrayList<>();
+                while (rs.next()) {
+                    activity_ids.add(rs.getInt("auto_activity_id"));
+                }
+                return activity_ids;
             }
-            return activity_ids;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -133,9 +140,10 @@ public class ReadFromSQL {
     public long countUsers() {
         String sql = "SELECT COUNT(*) FROM User";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                return rs.getLong(1);
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getLong(1);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -146,9 +154,10 @@ public class ReadFromSQL {
     public long countGames() {
         String sql = "SELECT COUNT(*) FROM Application";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                return rs.getLong(1);
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getLong(1);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -159,9 +168,10 @@ public class ReadFromSQL {
     public long countActivitiesToday() {
         String sql = "SELECT COUNT(*) FROM Activity WHERE DATE(starttime) = CURDATE()";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                return rs.getLong(1);
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getLong(1);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

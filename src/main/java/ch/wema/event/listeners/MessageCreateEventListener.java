@@ -21,6 +21,6 @@ public class MessageCreateEventListener {
     public static Mono<Void> handle(MessageCreateEvent event) {
         return Flux.fromIterable(reactions)
                 .flatMap(reaction -> reaction.handle(event))
-                .next();
+                .then();
     }
 }

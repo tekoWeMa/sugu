@@ -19,6 +19,6 @@ public class VoiceStateUpdateEventListener {
     public static Mono<Void> handle(VoiceStateUpdateEvent event) {
         return Flux.fromIterable(reactions)
                 .flatMap(reaction -> reaction.handle(event))
-                .next();
+                .then();
     }
 }

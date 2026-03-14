@@ -75,7 +75,7 @@ public class PresenceUpdateEventListener {
 
         return Flux.fromIterable(reactions)
                 .flatMap(reaction -> reaction.handle(event))
-                .next();
+                .then();
     }
 
     /**
