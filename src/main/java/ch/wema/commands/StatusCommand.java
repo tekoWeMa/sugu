@@ -29,15 +29,16 @@ public class StatusCommand implements Command {
             return event.reply().withEphemeral(true).withContent("This command is owner-only.");
         }
 
-        String subcommand = event.getOptions().get(0).getName();
-
-        return switch (subcommand) {
-            case "rotate" -> handleRotate(event);
-            case "preset" -> handlePreset(event);
-            case "custom" -> handleCustom(event);
-            case "show" -> handleShow(event);
-            default -> event.reply().withEphemeral(true).withContent("Unknown subcommand");
-        };
+        return event.getOptions().stream()
+                .findFirst()
+                .map(option -> switch (option.getName()) {
+                    case "rotate" -> handleRotate(event);
+                    case "preset" -> handlePreset(event);
+                    case "custom" -> handleCustom(event);
+                    case "show" -> handleShow(event);
+                    default -> event.reply().withEphemeral(true).withContent("Unknown subcommand");
+                })
+                .orElseGet(() -> event.reply().withEphemeral(true).withContent("No subcommand provided."));
     }
 
     private Mono<Void> handleRotate(ChatInputInteractionEvent event) {
