@@ -162,12 +162,13 @@ public class WriteToSQL {
 
     public void updateEndActivity(ArrayList<Integer> autoActivityId, Timestamp endtime) throws SQLException {
         String sql = "UPDATE Activity SET endtime = ? WHERE auto_activity_id = ?";
-        for (int activityId : autoActivityId) {
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            for (int activityId : autoActivityId) {
                 statement.setTimestamp(1, endtime);
                 statement.setInt(2, activityId);
-                statement.executeUpdate();
+                statement.addBatch();
             }
+            statement.executeBatch();
         }
     }
 
