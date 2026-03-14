@@ -58,21 +58,11 @@ public class Sugu {
 
         Runtime.getRuntime().addShutdownHook(new Thread(DatabaseService::shutdown));
 
-        client.on(ChatInputInteractionEvent.class, ChatInputInteractionEventListener::handle)
-                .then(client.onDisconnect())
-                .subscribe();
-        client.on(MessageCreateEvent.class, MessageCreateEventListener::handle)
-                .then(client.onDisconnect())
-                .subscribe();
-        client.on(PresenceUpdateEvent.class, PresenceUpdateEventListener::handle)
-                .then(client.onDisconnect())
-                .subscribe();
-        client.on(VoiceStateUpdateEvent.class, VoiceStateUpdateEventListener::handle)
-                .then(client.onDisconnect())
-                .subscribe();
-        client.on(GuildCreateEvent.class, GuildCreateEventListener::handle)
-                .then(client.onDisconnect())
-                .subscribe();
+        client.on(ChatInputInteractionEvent.class, ChatInputInteractionEventListener::handle).subscribe();
+        client.on(MessageCreateEvent.class, MessageCreateEventListener::handle).subscribe();
+        client.on(PresenceUpdateEvent.class, PresenceUpdateEventListener::handle).subscribe();
+        client.on(VoiceStateUpdateEvent.class, VoiceStateUpdateEventListener::handle).subscribe();
+        client.on(GuildCreateEvent.class, GuildCreateEventListener::handle).subscribe();
 
         // Mark guild listener as initialized after a delay to allow initial guild loading
         client.getGuilds().count()
