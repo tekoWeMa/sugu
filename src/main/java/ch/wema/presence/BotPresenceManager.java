@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -144,7 +145,7 @@ public class BotPresenceManager {
     private Mono<StatusPreset.BotStats> fetchStats() {
         return client.getGuilds().count()
                 .defaultIfEmpty(0L)
-                .map(servers -> {
+                .flatMap(servers -> Mono.fromCallable(() -> {
                     try (Connection conn = DatabaseService.getConnection()) {
                         ReadFromSQL reader = new ReadFromSQL(conn);
                         long users = reader.countUsers();
@@ -155,6 +156,6 @@ public class BotPresenceManager {
                         LOGGER.error("Failed to fetch stats for presence", e);
                         return new StatusPreset.BotStats(0, 0, 0, servers);
                     }
-                });
+                }).subscribeOn(Schedulers.boundedElastic()));
     }
 }
