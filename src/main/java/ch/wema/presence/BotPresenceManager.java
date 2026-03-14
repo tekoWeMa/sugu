@@ -2,7 +2,6 @@ package ch.wema.presence;
 
 import ch.wema.SQL.DatabaseService;
 import ch.wema.SQL.ReadFromSQL;
-import ch.wema.Sugu;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.object.presence.ClientActivity;
 import discord4j.core.object.presence.ClientPresence;
@@ -20,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class BotPresenceManager {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Sugu.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BotPresenceManager.class);
     private static final Duration ROTATION_INTERVAL = Duration.ofMinutes(5);
     private static final List<StatusPreset> ROTATION_PRESETS = List.of(
             StatusPreset.STATS,

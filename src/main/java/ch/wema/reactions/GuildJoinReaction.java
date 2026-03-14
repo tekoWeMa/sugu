@@ -1,6 +1,5 @@
 package ch.wema.reactions;
 
-import ch.wema.Sugu;
 import ch.wema.core.reaction.Reaction;
 import discord4j.common.util.Snowflake;
 import discord4j.core.event.domain.guild.GuildCreateEvent;
@@ -11,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Mono;
 
 public class GuildJoinReaction implements Reaction<GuildCreateEvent> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Sugu.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GuildJoinReaction.class);
     private static final String LOG_CHANNEL_ID = "1008364168753193030";
 
     @Override

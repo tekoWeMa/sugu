@@ -3,7 +3,6 @@ package ch.wema.reactions;
 import ch.wema.SQL.DatabaseService;
 import ch.wema.SQL.ReadFromSQL;
 import ch.wema.SQL.WriteToSQL;
-import ch.wema.Sugu;
 import ch.wema.core.reaction.Reaction;
 import discord4j.common.util.Snowflake;
 import discord4j.core.event.domain.PresenceUpdateEvent;
@@ -20,7 +19,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 public class ActivityReaction implements Reaction<PresenceUpdateEvent> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Sugu.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ActivityReaction.class);
 
     @Override
     public Mono<Void> handle(PresenceUpdateEvent event) {
