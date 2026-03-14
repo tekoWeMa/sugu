@@ -9,14 +9,11 @@ public class SimpReaction implements Reaction<VoiceStateUpdateEvent> {
 
     @Override
     public Mono<Void> handle(VoiceStateUpdateEvent event) {
-        Mono.just(event)
+        return Mono.just(event)
                 .map(VoiceStateUpdateEvent::getCurrent)
                 .filter(state -> state.getChannelId().map(id -> id.equals(Snowflake.of("619989000693874699"))).orElse(false))
-                .subscribe(state -> {
-                    var member = state.getMember().block();
-                    member.addRole(Snowflake.of("774385363112296488")).block();
-                });
-
-        return Mono.empty();
+                .flatMap(state -> state.getMember())
+                .flatMap(member -> member.addRole(Snowflake.of("774385363112296488")))
+                .then();
     }
 }
