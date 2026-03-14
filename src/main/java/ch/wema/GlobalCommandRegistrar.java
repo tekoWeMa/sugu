@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class GlobalCommandRegistrar {
     private static final String commandsFolderName = "commands/";
-    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalCommandRegistrar.class);
     private final RestClient restClient;
 
     public GlobalCommandRegistrar(RestClient restClient) {
@@ -62,7 +62,6 @@ public class GlobalCommandRegistrar {
 
         applicationService.bulkOverwriteGlobalApplicationCommand(applicationId, commands)
                 .doOnNext(cmd -> LOGGER.debug("Successfully registered Global Command " + cmd.name()))
-                .doOnError(e -> LOGGER.error("Failed to register global commands", e))
-                .subscribe();
+                .blockLast();
     }
 }
