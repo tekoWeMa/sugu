@@ -79,7 +79,7 @@ public class ReadFromSQL {
     }
 
     public Integer searchAppState(String state, String details) {
-        String sql = "SELECT auto_app_state_id FROM AppState WHERE state = ? AND details = ?";
+        String sql = "SELECT auto_app_state_id FROM AppState WHERE state <=> ? AND details <=> ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, state);
             statement.setString(2, details);
