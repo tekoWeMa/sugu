@@ -1,8 +1,10 @@
 name: Publish Docker image (sugu)
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
 
 jobs:
   push_to_registry:
