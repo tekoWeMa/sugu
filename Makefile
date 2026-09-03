@@ -1,5 +1,8 @@
 include Makefile.env
 
+# Publishing target. Overridable from Makefile.env or the environment.
+REGISTRY ?= registry.lunareclipse.ch
+
 CONTAINER			:= docker
 CONTAINER_COMPOSE	:= $(CONTAINER) compose
 
@@ -32,22 +35,18 @@ docker-compose-up:
 	$(CONTAINER_COMPOSE) up --detach
 
 .PHONY: push
-push: build docker-tag docker-push
+push: build docker-push
 
-.PHONY: docker-tag
-docker-tag:
-	@echo "Tagging image as $(DOCKERHUB_USER)/$(CONTAINER_TAG_NAME)"
-	docker tag $(CONTAINER_TAG_NAME) $(DOCKERHUB_USER)/$(CONTAINER_TAG_NAME)
 ifneq ($(VERSION),latest)
-	@echo "Tagging image as $(DOCKERHUB_USER)/$(CONTAINER_TAG):latest"
-	docker tag $(CONTAINER_TAG_NAME) $(DOCKERHUB_USER)/$(CONTAINER_TAG):latest
+LATEST_TAG := -t $(REGISTRY)/$(CONTAINER_TAG):latest
 endif
 
+# buildx pushes straight out of BuildKit, which registers every child
+# manifest. A plain `docker push` under the containerd image store uploads
+# them as blobs only, leaving a tagged index the registry cannot resolve.
 .PHONY: docker-push
 docker-push:
-	@echo "Pushing $(DOCKERHUB_USER)/$(CONTAINER_TAG_NAME) to Docker Hub"
-	docker push $(DOCKERHUB_USER)/$(CONTAINER_TAG_NAME)
-ifneq ($(VERSION),latest)
-	@echo "Pushing $(DOCKERHUB_USER)/$(CONTAINER_TAG):latest to Docker Hub"
-	docker push $(DOCKERHUB_USER)/$(CONTAINER_TAG):latest
-endif
+	@echo "Pushing $(REGISTRY)/$(CONTAINER_TAG_NAME)"
+	docker buildx build --platform linux/amd64 \
+		-t $(REGISTRY)/$(CONTAINER_TAG_NAME) $(LATEST_TAG) \
+		--push .
